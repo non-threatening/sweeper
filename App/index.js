@@ -9,8 +9,7 @@ import {
 } from 'react-native'
 import { Colors } from 'react-native/Libraries/NewAppScreen'
 
-import WebAudio from './components/WebAudio'
-import { Stop, sweep } from './components/sweep'
+import WebAudio, { Stop, sweep } from './components/WebAudio'
 
 const App = () => {
   return (
