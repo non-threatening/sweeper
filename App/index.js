@@ -1,11 +1,3 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow
- */
-
 import React, { Fragment } from 'react'
 import {
   SafeAreaView,
@@ -16,13 +8,9 @@ import {
   StatusBar
 } from 'react-native'
 
-import {
-  Header,
-  LearnMoreLinks,
-  Colors,
-  DebugInstructions,
-  ReloadInstructions
-} from 'react-native/Libraries/NewAppScreen'
+import { Colors } from 'react-native/Libraries/NewAppScreen'
+
+import { WebView } from 'react-native-webview'
 
 const App = () => {
   return (
@@ -32,39 +20,25 @@ const App = () => {
         <ScrollView
           contentInsetAdjustmentBehavior='automatic'
           style={styles.scrollView}>
-          <Header />
-          {global.HermesInternal == null ? null : (
-            <View style={styles.engine}>
-              <Text style={styles.footer}>Engine: Hermes</Text>
-            </View>
-          )}
           <View style={styles.body}>
             <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Step Butthole</Text>
-              <Text style={styles.sectionDescription}>
-                Edit <Text style={styles.highlight}>App.js</Text> dingus
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>See Your Changes</Text>
-              <Text style={styles.sectionDescription}>
-                <ReloadInstructions />
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Debug</Text>
-              <Text style={styles.sectionDescription}>
-                <DebugInstructions />
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
               <Text style={styles.sectionTitle}>Learn More</Text>
-              <Text style={styles.sectionDescription}>
-                Read the docs to discover what to do next:
-              </Text>
             </View>
-            <LearnMoreLinks />
           </View>
+          <WebView
+            originWhitelist={['*']}
+            source={{ html: '<h1>Hello world</h1>' }}
+            style={{
+              marginTop: 20,
+              backgroundColor: 'blue',
+              color: 'white',
+              height: 200
+            }}
+          />
+          {/* <WebView
+            source={{ uri: 'https://infinite.red' }}
+            style={{ marginTop: 20, backgroundColor: 'red', height: 200 }}
+          /> */}
         </ScrollView>
       </SafeAreaView>
     </Fragment>
@@ -73,14 +47,10 @@ const App = () => {
 
 const styles = StyleSheet.create({
   scrollView: {
-    backgroundColor: Colors.lighter
-  },
-  engine: {
-    position: 'absolute',
-    right: 0
+    backgroundColor: Colors.darker
   },
   body: {
-    backgroundColor: Colors.white
+    backgroundColor: Colors.black
   },
   sectionContainer: {
     marginTop: 32,
@@ -89,24 +59,7 @@ const styles = StyleSheet.create({
   sectionTitle: {
     fontSize: 24,
     fontWeight: '600',
-    color: Colors.black
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-    color: Colors.dark
-  },
-  highlight: {
-    fontWeight: '700'
-  },
-  footer: {
-    color: Colors.dark,
-    fontSize: 12,
-    fontWeight: '600',
-    padding: 4,
-    paddingRight: 12,
-    textAlign: 'right'
+    color: Colors.pink
   }
 })
 
