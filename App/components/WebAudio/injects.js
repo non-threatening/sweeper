@@ -9,7 +9,7 @@ export const Stop = () => {
   `)
 }
 
-export const sweep = osc => {
+export const TestTone = osc => {
   osc = 0
   return this.webview.injectJavaScript(`
     osc[${osc}] = new Tone.Oscillator({

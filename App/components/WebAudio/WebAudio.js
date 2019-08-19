@@ -8,7 +8,7 @@ const WebAudio = () => {
       style={{ height: 0, width: 0, opacity: 0 }}
       source={{ uri: 'file:///android_asset/index/index.html' }}
       ref={ref => (this.webview = ref)}
-      // onLoad={() => this.setState({ splash: false })}
+      onLoad={() => console.log('WebView loaded')}
       onMessage={event => console.log(event.nativeEvent.data)}
       mediaPlaybackRequiresUserAction={false}
     />

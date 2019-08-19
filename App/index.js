@@ -9,7 +9,7 @@ import {
 } from 'react-native'
 import { Colors } from 'react-native/Libraries/NewAppScreen'
 
-import WebAudio, { Stop, sweep } from './components/WebAudio'
+import WebAudio, { Stop, TestTone } from './components/WebAudio'
 
 const App = () => {
   return (
@@ -24,9 +24,9 @@ const App = () => {
             <View style={styles.sectionContainer}>
               <Button
                 onPress={() => {
-                  sweep()
+                  TestTone()
                 }}
-                title='sweep'
+                title='TestTone'
               />
               <Button
                 onPress={() => {
