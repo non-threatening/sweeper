@@ -10,6 +10,7 @@ import {
 import { Colors } from 'react-native/Libraries/NewAppScreen'
 
 import WebAudio, { Stop, TestTone } from './components/WebAudio'
+import { Sweep } from './components/WebAudio/Sweep'
 
 const App = () => {
   return (
@@ -22,6 +23,12 @@ const App = () => {
           style={styles.scrollView}>
           <View style={styles.body}>
             <View style={styles.sectionContainer}>
+              <Button
+                onPress={() => {
+                  Sweep()
+                }}
+                title='Sweep'
+              />
               <Button
                 onPress={() => {
                   TestTone()
