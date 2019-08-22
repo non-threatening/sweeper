@@ -1,16 +1,24 @@
 import React, { Fragment } from 'react'
 import {
-  Button,
+  Dimensions,
+  TouchableOpacity,
   SafeAreaView,
   StyleSheet,
   ScrollView,
   View,
-  StatusBar
+  StatusBar,
+  Text
 } from 'react-native'
 import { Colors } from 'react-native/Libraries/NewAppScreen'
 
-import WebAudio, { Stop, TestTone } from './components/WebAudio'
-import { Sweep } from './components/WebAudio/Sweep'
+import WebAudio, {
+  Stop,
+  Sweep,
+  SweepInput
+  // TestTone
+} from './components/WebAudio'
+
+const screenWidth = Math.round(Dimensions.get('window').width);
 
 const App = () => {
   return (
@@ -23,24 +31,14 @@ const App = () => {
           style={styles.scrollView}>
           <View style={styles.body}>
             <View style={styles.sectionContainer}>
-              <Button
-                onPress={() => {
-                  Sweep()
-                }}
-                title='Sweep'
-              />
-              <Button
-                onPress={() => {
-                  TestTone()
-                }}
-                title='TestTone'
-              />
-              <Button
+              <SweepInput />
+              <TouchableOpacity
+                style={styles.button}
                 onPress={() => {
                   Stop()
-                }}
-                title='Stop'
-              />
+                }}>
+                <Text style={styles.text}>Stop</Text>
+              </TouchableOpacity>
             </View>
           </View>
         </ScrollView>
@@ -50,6 +48,15 @@ const App = () => {
 }
 
 const styles = StyleSheet.create({
+  text: {
+    textAlign: 'center',
+    color: '#333'
+  },
+  button: {
+    backgroundColor: 'gray',
+    height: 30,
+    margin: 5
+  },
   scrollView: {
     backgroundColor: Colors.darker
   },
