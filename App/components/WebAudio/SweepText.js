@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
-import { StyleSheet, Text, TouchableHighlight } from 'react-native'
-import Slider from '@react-native-community/slider'
+import { StyleSheet, TextInput, Text, TouchableHighlight } from 'react-native'
+// import Slider from '@react-native-community/slider'
 import width from '../constants'
 import { useStateValue } from '../../context'
 
-export const SweepInput = () => {
+export const SweepInputText = () => {
   const [{ osc }, dispatch] = useStateValue()
   const [start, setStart] = useState(2500)
   const [end, setEnd] = useState(100)
@@ -12,34 +12,28 @@ export const SweepInput = () => {
 
   return (
     <>
-      <Text style={{ color: 'red' }}>Start: {start} Hz</Text>
-      <Slider
-        style={styles.slider}
-        value={start}
-        onValueChange={value => {
-          setStart(value)
-        }}
-        maximumValue={5000}
+      <Text style={{ color: 'red' }}>Start: {start}</Text>
+      <TextInput
+        style={styles.textInput}
+        onChangeText={text => setStart(text)}
+        value={start.toString()}
+        keyboardType={'numeric'}
       />
 
-      <Text style={{ color: 'red' }}>End: {end} Hz</Text>
-      <Slider
-        style={styles.slider}
-        value={end}
-        onValueChange={value => {
-          setEnd(value)
-        }}
-        maximumValue={5000}
+      <Text style={{ color: 'red' }}>End: {end}</Text>
+      <TextInput
+        style={styles.textInput}
+        onChangeText={text => setEnd(text)}
+        value={end.toString()}
+        keyboardType={'numeric'}
       />
 
-      <Text style={{ color: 'red' }}>Seconds: {time}</Text>
-      <Slider
-        style={styles.slider}
-        value={time}
-        onValueChange={value => {
-          setTime(value)
-        }}
-        maximumValue={500}
+      <Text style={{ color: 'red' }}>Time: {time}</Text>
+      <TextInput
+        style={styles.textInput}
+        onChangeText={text => setTime(text)}
+        value={time.toString()}
+        keyboardType={'numeric'}
       />
 
       <TouchableHighlight
@@ -79,6 +73,10 @@ export const SweepInput = () => {
 }
 
 const styles = StyleSheet.create({
+  textInput: {
+    height: 40,
+    backgroundColor: 'white'
+  },
   text: {
     textAlign: 'center',
     color: '#333'

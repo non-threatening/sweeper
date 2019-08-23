@@ -10,7 +10,11 @@ import {
 } from 'react-native'
 import { Colors } from 'react-native/Libraries/NewAppScreen'
 
-import WebAudio, { Stop, SweepInput } from './components/WebAudio'
+import WebAudio, {
+  Stop,
+  SweepInput,
+  SweepInputText
+} from './components/WebAudio'
 import { initialState, reducer, StateProvider } from './context'
 
 const App = () => {
@@ -25,7 +29,7 @@ const App = () => {
             style={styles.scrollView}>
             <View style={styles.body}>
               <View style={styles.sectionContainer}>
-                <SweepInput />
+                <SweepInputText />
                 <SweepInput />
                 <TouchableOpacity
                   style={styles.button}
