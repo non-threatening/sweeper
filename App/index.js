@@ -1,6 +1,5 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import {
-  Dimensions,
   TouchableOpacity,
   SafeAreaView,
   StyleSheet,
@@ -11,39 +10,36 @@ import {
 } from 'react-native'
 import { Colors } from 'react-native/Libraries/NewAppScreen'
 
-import WebAudio, {
-  Stop,
-  Sweep,
-  SweepInput
-  // TestTone
-} from './components/WebAudio'
-
-const screenWidth = Math.round(Dimensions.get('window').width);
+import WebAudio, { Stop, SweepInput } from './components/WebAudio'
+import { initialState, reducer, StateProvider } from './context'
 
 const App = () => {
   return (
-    <Fragment>
+    <>
       <StatusBar barStyle='dark-content' />
       <WebAudio />
       <SafeAreaView>
-        <ScrollView
-          contentInsetAdjustmentBehavior='automatic'
-          style={styles.scrollView}>
-          <View style={styles.body}>
-            <View style={styles.sectionContainer}>
-              <SweepInput />
-              <TouchableOpacity
-                style={styles.button}
-                onPress={() => {
-                  Stop()
-                }}>
-                <Text style={styles.text}>Stop</Text>
-              </TouchableOpacity>
+        <StateProvider initialState={initialState} reducer={reducer}>
+          <ScrollView
+            contentInsetAdjustmentBehavior='automatic'
+            style={styles.scrollView}>
+            <View style={styles.body}>
+              <View style={styles.sectionContainer}>
+                <SweepInput />
+                <SweepInput />
+                <TouchableOpacity
+                  style={styles.button}
+                  onPress={() => {
+                    Stop()
+                  }}>
+                  <Text style={styles.text}>Stop</Text>
+                </TouchableOpacity>
+              </View>
             </View>
-          </View>
-        </ScrollView>
+          </ScrollView>
+        </StateProvider>
       </SafeAreaView>
-    </Fragment>
+    </>
   )
 }
 
