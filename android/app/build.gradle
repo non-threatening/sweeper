@@ -128,7 +128,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.rngesture"
+        applicationId "com.non_threatening.sweep"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

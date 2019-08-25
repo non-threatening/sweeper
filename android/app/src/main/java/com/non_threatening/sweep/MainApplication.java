@@ -1,4 +1,4 @@
-package com.rngesture;
+package com.non_threatening.sweep;
 
 import android.app.Application;
 import android.util.Log;

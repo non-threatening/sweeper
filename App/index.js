@@ -31,8 +31,8 @@ const App = () => {
               <View style={styles.sectionContainer}>
                 <SweepInputText />
                 <SweepInputText />
-                <SweepInput />
-                <SweepInput />
+                {/* <SweepInput />
+                <SweepInput /> */}
                 {/* <TouchableOpacity
                   style={styles.button}
                   onPress={() => {
@@ -66,8 +66,7 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.black
   },
   sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24
+    marginTop: 32
   }
 })
 

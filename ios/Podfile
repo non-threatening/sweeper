@@ -1,8 +1,8 @@
 platform :ios, '9.0'
 require_relative '../node_modules/@react-native-community/cli-platform-ios/native_modules'
 
-target 'rnGesture' do
-  # Pods for rnGesture
+target 'FrequencySweep' do
+  # Pods for FrequencySweep
   pod 'React', :path => '../node_modules/react-native/'
   pod 'React-Core', :path => '../node_modules/react-native/React'
   pod 'React-DevSupport', :path => '../node_modules/react-native/React'
@@ -28,7 +28,7 @@ target 'rnGesture' do
   pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
 
 
-  target 'rnGestureTests' do
+  target 'FrequencySweepTests' do
     inherit! :search_paths
     # Pods for testing
   end
@@ -36,10 +36,10 @@ target 'rnGesture' do
   use_native_modules!
 end
 
-target 'rnGesture-tvOS' do
-  # Pods for rnGesture-tvOS
+target 'FrequencySweep-tvOS' do
+  # Pods for FrequencySweep-tvOS
 
-  target 'rnGesture-tvOSTests' do
+  target 'FrequencySweep-tvOSTests' do
     inherit! :search_paths
     # Pods for testing
   end
