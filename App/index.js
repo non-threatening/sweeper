@@ -30,14 +30,16 @@ const App = () => {
             <View style={styles.body}>
               <View style={styles.sectionContainer}>
                 <SweepInputText />
+                <SweepInputText />
                 <SweepInput />
-                <TouchableOpacity
+                <SweepInput />
+                {/* <TouchableOpacity
                   style={styles.button}
                   onPress={() => {
                     Stop()
                   }}>
                   <Text style={styles.text}>Stop</Text>
-                </TouchableOpacity>
+                </TouchableOpacity> */}
               </View>
             </View>
           </ScrollView>

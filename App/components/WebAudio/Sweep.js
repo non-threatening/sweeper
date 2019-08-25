@@ -63,7 +63,8 @@ export const SweepInput = () => {
       'frequency': ${start}
     }).chain(output, Tone.Master).start();
     osc[${osc}].frequency.rampTo(${end}, ${time});
-    window.ReactNativeWebView.postMessage('Sweep start');
+    window.ReactNativeWebView.postMessage('Sweep stt');
+    window.ReactNativeWebView.postMessage('Sweep middle');
 
     setTimeout(() => {
       osc[${osc}].volume.rampTo(-Infinity, 0.2);

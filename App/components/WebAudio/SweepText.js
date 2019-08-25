@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { StyleSheet, TextInput, Text, TouchableHighlight } from 'react-native'
-// import Slider from '@react-native-community/slider'
+import Slider from '@react-native-community/slider'
 import width from '../constants'
 import { useStateValue } from '../../context'
 
@@ -9,10 +9,11 @@ export const SweepInputText = () => {
   const [start, setStart] = useState(2500)
   const [end, setEnd] = useState(100)
   const [time, setTime] = useState(5)
+  const [db, setDb] = useState(-1)
 
   return (
     <>
-      <Text style={{ color: 'red' }}>Start: {start}</Text>
+      <Text style={{ color: 'red' }}>Start: {start} Hz</Text>
       <TextInput
         style={styles.textInput}
         onChangeText={text => setStart(text)}
@@ -28,7 +29,7 @@ export const SweepInputText = () => {
         keyboardType={'numeric'}
       />
 
-      <Text style={{ color: 'red' }}>Time: {time}</Text>
+      <Text style={{ color: 'red' }}>Seconds: {time}</Text>
       <TextInput
         style={styles.textInput}
         onChangeText={text => setTime(text)}
@@ -36,37 +37,59 @@ export const SweepInputText = () => {
         keyboardType={'numeric'}
       />
 
+      <Text style={{ color: 'red' }}>Db: {db}</Text>
+      <Slider
+        style={styles.slider}
+        value={time}
+        onValueChange={value => {
+          setDb(value)
+          // return this.webview.injectJavaScript(`
+          //   osc[${osc}].volume.rampTo(${db}, 0.1);
+          // `)
+        }}
+        minimumValue={-40}
+        maximumValue={0}
+        maximumTrackTintColor={'white'}
+        minimumTrackTintColor={'white'}
+      />
+
       <TouchableHighlight
         style={styles.button}
         onPress={() => {
-          Sweep()
           dispatch({
             type: 'NEW_OSC'
           })
+          Sweep()
         }}>
         <Text style={styles.text}>Sweep</Text>
       </TouchableHighlight>
     </>
   )
 
+  function Volume() {
+    return this.webview.injectJavaScript(`
+      osc[${osc}].volume.rampTo(${db}, 0.1);
+    `)
+  }
+
   function Sweep() {
     return this.webview.injectJavaScript(`
     osc[${osc}] = new Tone.Oscillator({
       'type': 'sine',
-      'volume': '-1',
+      'volume': ${db},
       'frequency': ${start}
     }).chain(output, Tone.Master).start();
     osc[${osc}].frequency.rampTo(${end}, ${time});
-    window.ReactNativeWebView.postMessage('Sweep start');
-
+    window.ReactNativeWebView.postMessage('Sweep stt');
+    
     setTimeout(() => {
+      window.ReactNativeWebView.postMessage('Sweep middle');
       osc[${osc}].volume.rampTo(-Infinity, 0.2);
     }, (${time} * 1000 - 200));
 
     setTimeout(() => {
-      osc[${osc}].forEach(o => { o.dispose(); });
-      osc[${osc}].length = 0;
       window.ReactNativeWebView.postMessage('Sweep end');
+      osc[${osc}].o.dispose();
     }, (${time} * 1000));
     `)
   }
