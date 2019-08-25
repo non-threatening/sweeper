@@ -1,20 +1,14 @@
 import React from 'react'
 import {
-  TouchableOpacity,
   SafeAreaView,
   StyleSheet,
   ScrollView,
   View,
-  StatusBar,
-  Text
+  StatusBar
 } from 'react-native'
 import { Colors } from 'react-native/Libraries/NewAppScreen'
 
-import WebAudio, {
-  Stop,
-  SweepInput,
-  SweepInputText
-} from './components/WebAudio'
+import WebAudio, { SweepInputText } from './components/WebAudio'
 import { initialState, reducer, StateProvider } from './context'
 
 const App = () => {
@@ -31,15 +25,8 @@ const App = () => {
               <View style={styles.sectionContainer}>
                 <SweepInputText />
                 <SweepInputText />
-                {/* <SweepInput />
-                <SweepInput /> */}
-                {/* <TouchableOpacity
-                  style={styles.button}
-                  onPress={() => {
-                    Stop()
-                  }}>
-                  <Text style={styles.text}>Stop</Text>
-                </TouchableOpacity> */}
+                <SweepInputText />
+                <SweepInputText />
               </View>
             </View>
           </ScrollView>
@@ -50,15 +37,6 @@ const App = () => {
 }
 
 const styles = StyleSheet.create({
-  text: {
-    textAlign: 'center',
-    color: '#333'
-  },
-  button: {
-    backgroundColor: 'gray',
-    height: 30,
-    margin: 5
-  },
   scrollView: {
     backgroundColor: Colors.darker
   },

@@ -112,20 +112,20 @@ export const SweepInputText = () => {
 
   function Sweep() {
     return this.webview.injectJavaScript(`
-    osc[${osc}] = new Tone.Oscillator({
-      'type': 'sine',
-      'volume': ${db},
-      'frequency': ${start}
-    }).chain(output, Tone.Master).start();
-    osc[${osc}].frequency.rampTo(${end}, ${time});
-    
-    setTimeout(() => {
-      osc[${osc}].volume.rampTo(-Infinity, 0.2);
-    }, (${time} * 1000 - 200));
+      osc[${osc}] = new Tone.Oscillator({
+        'type': 'sine',
+        'volume': ${db},
+        'frequency': ${start}
+      }).chain(output, Tone.Master).start();
+      osc[${osc}].frequency.rampTo(${end}, ${time});
+      
+      setTimeout(() => {
+        osc[${osc}].volume.rampTo(-Infinity, 0.2);
+      }, (${time} * 1000 - 200));
 
-    setTimeout(() => {
-      osc[${osc}].dispose();
-    }, (${time} * 1000));
+      setTimeout(() => {
+        osc[${osc}].dispose();
+      }, (${time} * 1000));
     `)
   }
 }
