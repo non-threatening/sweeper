@@ -5,7 +5,6 @@ export const initialState = {
 }
 
 export const reducer = (state, action) => {
-  console.log(state.osc)
   switch (action.type) {
     case 'NEW_OSC':
       return {

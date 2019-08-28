@@ -114,9 +114,10 @@ export const SweepInputText = () => {
     return this.webview.injectJavaScript(`
       osc[${osc}] = new Tone.Oscillator({
         'type': 'sine',
-        'volume': ${db},
+        'volume': '-Infinity',
         'frequency': ${start}
       }).chain(output, Tone.Master).start();
+      osc[${osc}].volume.rampTo(${db}, 0.2);
       osc[${osc}].frequency.rampTo(${end}, ${time});
       
       setTimeout(() => {
