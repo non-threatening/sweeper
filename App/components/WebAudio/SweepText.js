@@ -97,10 +97,10 @@ export const SweepInputText = () => {
 
   function Stop() {
     return this.webview.injectJavaScript(`
-      osc[${thisOsc}].volume.rampTo(-Infinity, 0.1);
+      osc[${thisOsc}].volume.rampTo(-Infinity, 0.2);
       setTimeout(() => {
         osc[${thisOsc}].dispose();
-      }, (100));
+      }, 250);
     `)
   }
 
