@@ -79,7 +79,7 @@ export const SweepInputText = () => {
         </TouchableHighlight>
       </View>
 
-      <Text style={{ color: 'red' }}>Db: {db}</Text>
+      <Text style={{ color: 'white' }}>Db: {db}</Text>
       <Slider
         style={styles.slider}
         value={db}
@@ -134,7 +134,7 @@ export const SweepInputText = () => {
 const styles = StyleSheet.create({
   textInput: {
     height: 40,
-    backgroundColor: '#666',
+    backgroundColor: '#ddd',
     width: 100
   },
   textInputContainer: {
@@ -144,7 +144,7 @@ const styles = StyleSheet.create({
     marginVertical: 5
   },
   text: {
-    color: 'red',
+    color: 'white',
     width: 100
   },
   buttonText: {
