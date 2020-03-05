@@ -1,10 +1,12 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {
   SafeAreaView,
-  StyleSheet,
   ScrollView,
-  View,
-  StatusBar
+  StatusBar,
+  StyleSheet,
+  TouchableNativeFeedback,
+  Text,
+  View
 } from 'react-native'
 import { Colors } from 'react-native/Libraries/NewAppScreen'
 
@@ -12,11 +14,28 @@ import WebAudio, { SweepInputText } from './components/WebAudio'
 import { initialState, reducer, StateProvider } from './context'
 
 const App = () => {
+  const [knobs, setKnobs] = useState([])
+  let key = 0
+
+  // eslint-disable-next-line no-shadow
+  let newKnobs = knobs.map((item, key) => {
+    return <SweepInputText key={key} />
+  })
+  const _add = () => {
+    let addKnob = { key: key }
+    setKnobs([...knobs, addKnob])
+    console.log(newKnobs)
+    key = key + 1
+    return this.webview.injectJavaScript(`
+    window.ReactNativeWebView.postMessage('inject from App.js');
+    `)
+  }
+
   return (
     <>
       <StatusBar barStyle='dark-content' />
       <WebAudio />
-      <SafeAreaView>
+      <SafeAreaView style={styles.body}>
         <StateProvider initialState={initialState} reducer={reducer}>
           <ScrollView
             contentInsetAdjustmentBehavior='automatic'
@@ -24,9 +43,22 @@ const App = () => {
             <View style={styles.body}>
               <View style={styles.sectionContainer}>
                 <SweepInputText />
-                <SweepInputText />
-                <SweepInputText />
-                <SweepInputText />
+                {newKnobs}
+                <TouchableNativeFeedback
+                  onPress={_add}
+                  background={TouchableNativeFeedback.SelectableBackground()}>
+                  <View
+                    style={{
+                      backgroundColor: 'gray',
+                      height: 40,
+                      marginLeft: 25,
+                      marginRight: 25
+                    }}>
+                    <Text style={{ textAlign: 'center', marginTop: 10 }}>
+                      ADD SWEEPER
+                    </Text>
+                  </View>
+                </TouchableNativeFeedback>
               </View>
             </View>
           </ScrollView>

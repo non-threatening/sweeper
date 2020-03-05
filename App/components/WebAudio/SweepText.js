@@ -22,7 +22,6 @@ export const SweepInputText = () => {
   const [{ osc }, dispatch] = useStateValue()
   const [start, setStart] = useState(2500)
   const [end, setEnd] = useState(100)
-  // const [pan, setPan] = useState(0)
   const [time, setTime] = useState(5)
   const [db, setDb] = useState(0)
   const [thisOsc, setThisOsc] = useState(osc)
@@ -37,7 +36,6 @@ export const SweepInputText = () => {
         marginBottom: 25,
         paddingVertical: 10
       }}>
-      {/* frequency */}
       <Text style={styles.text}>Frequency</Text>
       <View style={styles.inputsWrapper}>
         <View style={styles.textInputContainer}>
@@ -54,36 +52,6 @@ export const SweepInputText = () => {
           <Input onChangeText={text => setEnd(text)} value={end.toString()} />
           <Text style={styles.text}> Hz </Text>
         </View>
-      </View>
-
-      {/* panner */}
-      <Text style={styles.text}>Pan</Text>
-      <View style={styles.inputsWrapper}>
-        {/* <Slider
-          style={styles.slider}
-          value={pan}
-          onValueChange={value => {
-            setPan(value)
-            // Volume()
-          }}
-          minimumValue={-50}
-          maximumValue={-0}
-          maximumTrackTintColor={'#666'}
-          minimumTrackTintColor={'#666'}
-        /> */}
-
-        {/* <Slider
-          style={styles.slider}
-          value={db}
-          onValueChange={value => {
-            setDb(value)
-            Volume()
-          }}
-          minimumValue={-50}
-          maximumValue={-0}
-          maximumTrackTintColor={'#666'}
-          minimumTrackTintColor={'#666'}
-        /> */}
       </View>
 
       <View style={styles.textInputContainer}>
