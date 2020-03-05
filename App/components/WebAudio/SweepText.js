@@ -22,8 +22,9 @@ export const SweepInputText = () => {
   const [{ osc }, dispatch] = useStateValue()
   const [start, setStart] = useState(2500)
   const [end, setEnd] = useState(100)
+  // const [pan, setPan] = useState(0)
   const [time, setTime] = useState(5)
-  const [db, setDb] = useState(-1)
+  const [db, setDb] = useState(0)
   const [thisOsc, setThisOsc] = useState(osc)
 
   return (
@@ -36,16 +37,53 @@ export const SweepInputText = () => {
         marginBottom: 25,
         paddingVertical: 10
       }}>
-      <View style={styles.textInputContainer}>
-        <Text style={styles.text}>Start: </Text>
-        <Input onChangeText={text => setStart(text)} value={start.toString()} />
-        <Text style={styles.text}> Hz </Text>
+      {/* frequency */}
+      <Text style={styles.text}>Frequency</Text>
+      <View style={styles.inputsWrapper}>
+        <View style={styles.textInputContainer}>
+          <Text style={styles.text}>Start: </Text>
+          <Input
+            onChangeText={text => setStart(text)}
+            value={start.toString()}
+          />
+          <Text style={styles.text}> Hz </Text>
+        </View>
+
+        <View style={styles.textInputContainer}>
+          <Text style={styles.text}>End: </Text>
+          <Input onChangeText={text => setEnd(text)} value={end.toString()} />
+          <Text style={styles.text}> Hz </Text>
+        </View>
       </View>
 
-      <View style={styles.textInputContainer}>
-        <Text style={styles.text}>End: </Text>
-        <Input onChangeText={text => setEnd(text)} value={end.toString()} />
-        <Text style={styles.text}> Hz </Text>
+      {/* panner */}
+      <Text style={styles.text}>Pan</Text>
+      <View style={styles.inputsWrapper}>
+        {/* <Slider
+          style={styles.slider}
+          value={pan}
+          onValueChange={value => {
+            setPan(value)
+            // Volume()
+          }}
+          minimumValue={-50}
+          maximumValue={-0}
+          maximumTrackTintColor={'#666'}
+          minimumTrackTintColor={'#666'}
+        /> */}
+
+        {/* <Slider
+          style={styles.slider}
+          value={db}
+          onValueChange={value => {
+            setDb(value)
+            Volume()
+          }}
+          minimumValue={-50}
+          maximumValue={-0}
+          maximumTrackTintColor={'#666'}
+          minimumTrackTintColor={'#666'}
+        /> */}
       </View>
 
       <View style={styles.textInputContainer}>
@@ -79,7 +117,7 @@ export const SweepInputText = () => {
         </TouchableHighlight>
       </View>
 
-      <Text style={{ color: 'white' }}>Db: {db}</Text>
+      <Text style={{ color: 'white' }}>Db: {db.toFixed(2)}</Text>
       <Slider
         style={styles.slider}
         value={db}
@@ -87,8 +125,8 @@ export const SweepInputText = () => {
           setDb(value)
           Volume()
         }}
-        minimumValue={-40}
-        maximumValue={-1}
+        minimumValue={-50}
+        maximumValue={-0}
         maximumTrackTintColor={'#666'}
         minimumTrackTintColor={'#666'}
       />
@@ -133,19 +171,22 @@ export const SweepInputText = () => {
 
 const styles = StyleSheet.create({
   textInput: {
-    height: 40,
+    height: 35,
     backgroundColor: '#ddd',
-    width: 100
+    width: 50
   },
   textInputContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center',
     marginVertical: 5
   },
+  inputsWrapper: {
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
+    width: width
+  },
   text: {
-    color: 'white',
-    width: 100
+    color: 'white'
   },
   buttonText: {
     color: 'white'
