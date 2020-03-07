@@ -25,6 +25,7 @@ export const SweepInputText = () => {
   const [time, setTime] = useState(5)
   const [db, setDb] = useState(0)
   const [thisOsc, setThisOsc] = useState(osc)
+  const [active, setActive] = useState(false)
 
   return (
     <View
@@ -65,7 +66,8 @@ export const SweepInputText = () => {
 
       <View style={styles.textInputContainer}>
         <TouchableHighlight
-          style={styles.button}
+          style={active ? styles.buttonOn : styles.button}
+          disabled={active}
           onPress={() => {
             dispatch({
               type: 'NEW_OSC'
@@ -73,7 +75,7 @@ export const SweepInputText = () => {
             Sweep()
             setThisOsc(osc)
           }}>
-          <Text style={styles.buttonText}>Sweep</Text>
+          <Text style={styles.text}>{active ? 'Playing...' : 'Sweep'}</Text>
         </TouchableHighlight>
 
         <TouchableHighlight
@@ -81,7 +83,7 @@ export const SweepInputText = () => {
           onPress={() => {
             Stop()
           }}>
-          <Text style={styles.buttonText}>Stop</Text>
+          <Text style={styles.text}>Stop</Text>
         </TouchableHighlight>
       </View>
 
@@ -102,6 +104,7 @@ export const SweepInputText = () => {
   )
 
   function Stop() {
+    setActive(false)
     return this.webview.injectJavaScript(`
       osc[${thisOsc}].volume.rampTo(-Infinity, 0.2);
       setTimeout(() => {
@@ -117,6 +120,11 @@ export const SweepInputText = () => {
   }
 
   function Sweep() {
+    setActive(true)
+    setTimeout(() => {
+      setActive(false)
+    }, time * 1000 + 200)
+
     return this.webview.injectJavaScript(`
       osc[${osc}] = new Tone.Oscillator({
         'type': 'sine',
@@ -156,18 +164,30 @@ const styles = StyleSheet.create({
   text: {
     color: 'white'
   },
-  buttonText: {
-    color: 'white'
-  },
   slider: {
     width: width * 0.8,
     height: 40
   },
+  // buttonText: {
+  //   color: 'white'
+  // },
+  // buttonTextOn: {
+  //   color: 'gray'
+  // },
   button: {
     alignItems: 'center',
     justifyContent: 'center',
     padding: 10,
     backgroundColor: 'gray',
+    height: 30,
+    width: width * 0.4,
+    margin: 5
+  },
+  buttonOn: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 10,
+    backgroundColor: 'green',
     height: 30,
     width: width * 0.4,
     margin: 5

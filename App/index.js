@@ -24,11 +24,11 @@ const App = () => {
   const _add = () => {
     let addKnob = { key: key }
     setKnobs([...knobs, addKnob])
-    console.log(newKnobs)
+    // console.log(newKnobs)
     key = key + 1
-    return this.webview.injectJavaScript(`
-    window.ReactNativeWebView.postMessage('inject from App.js');
-    `)
+    // return this.webview.injectJavaScript(`
+    // window.ReactNativeWebView.postMessage('inject from App.js');
+    // `)
   }
 
   return (
@@ -47,13 +47,7 @@ const App = () => {
                 <TouchableNativeFeedback
                   onPress={_add}
                   background={TouchableNativeFeedback.SelectableBackground()}>
-                  <View
-                    style={{
-                      backgroundColor: 'gray',
-                      height: 40,
-                      marginLeft: 25,
-                      marginRight: 25
-                    }}>
+                  <View style={styles.button}>
                     <Text style={{ textAlign: 'center', marginTop: 10 }}>
                       ADD SWEEPER
                     </Text>
@@ -77,6 +71,12 @@ const styles = StyleSheet.create({
   },
   sectionContainer: {
     marginTop: 32
+  },
+  button: {
+    backgroundColor: 'gray',
+    height: 40,
+    marginLeft: 25,
+    marginRight: 25
   }
 })
 
