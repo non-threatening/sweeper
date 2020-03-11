@@ -11,7 +11,7 @@ import { Colors } from 'react-native/Libraries/NewAppScreen'
 import WebAudio from './components/WebAudio'
 import { initialState, reducer, StateProvider } from './context'
 
-import { SweepTextAdder } from './components/WebAudio/SweepTextAdder'
+import { SweepTextAdder } from './components/Sweeper'
 
 const App = () => {
   return (

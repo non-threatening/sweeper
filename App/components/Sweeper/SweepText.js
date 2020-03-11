@@ -9,7 +9,7 @@ import {
 import Slider from '@react-native-community/slider'
 import { Dimensions } from 'react-native'
 
-import { KillOsc, SetVolume } from './functions'
+import { KillOsc, SetVolume } from '../WebAudio/oscFunctions'
 
 const width = Dimensions.get('window').width
 
