@@ -7,8 +7,9 @@ import {
   View
 } from 'react-native'
 import Slider from '@react-native-community/slider'
-import { useStateValue } from '../../context'
 import { Dimensions } from 'react-native'
+
+import { KillOsc, SetVolume } from './functions'
 
 const width = Dimensions.get('window').width
 
@@ -18,13 +19,11 @@ const Input = props => {
   )
 }
 
-export const SweepInputText = () => {
-  const [{ osc }, dispatch] = useStateValue()
+export const SweepInputText = props => {
   const [start, setStart] = useState(2500)
   const [end, setEnd] = useState(100)
   const [time, setTime] = useState(5)
   const [db, setDb] = useState(0)
-  const [thisOsc, setThisOsc] = useState(osc)
   const [active, setActive] = useState(false)
 
   return (
@@ -69,11 +68,9 @@ export const SweepInputText = () => {
           style={active ? styles.buttonOn : styles.button}
           disabled={active}
           onPress={() => {
-            dispatch({
-              type: 'NEW_OSC'
-            })
             Sweep()
-            setThisOsc(osc)
+            console.log(props.osc)
+            console.log(props)
           }}>
           <Text style={styles.text}>{active ? 'Playing...' : 'Sweep'}</Text>
         </TouchableHighlight>
@@ -105,18 +102,11 @@ export const SweepInputText = () => {
 
   function Stop() {
     setActive(false)
-    return this.webview.injectJavaScript(`
-      osc[${thisOsc}].volume.rampTo(-Infinity, 0.2);
-      setTimeout(() => {
-        osc[${thisOsc}].dispose();
-      }, 250);
-    `)
+    KillOsc(props.osc)
   }
 
   function Volume() {
-    return this.webview.injectJavaScript(`
-      osc[${thisOsc}].volume.rampTo(${db}, 0.1);
-    `)
+    SetVolume(props.osc, db)
   }
 
   function Sweep() {
@@ -126,20 +116,20 @@ export const SweepInputText = () => {
     }, time * 1000 + 200)
 
     return this.webview.injectJavaScript(`
-      osc[${osc}] = new Tone.Oscillator({
+      osc[${props.osc}] = new Tone.Oscillator({
         'type': 'sine',
         'volume': '-Infinity',
         'frequency': ${start}
       }).chain(output, Tone.Master).start();
-      osc[${osc}].volume.rampTo(${db}, 0.2);
-      osc[${osc}].frequency.rampTo(${end}, ${time});
+      osc[${props.osc}].volume.rampTo(${db}, 0.2);
+      osc[${props.osc}].frequency.rampTo(${end}, ${time});
       
       setTimeout(() => {
-        osc[${osc}].volume.rampTo(-Infinity, 0.2);
+        osc[${props.osc}].volume.rampTo(-Infinity, 0.2);
       }, (${time} * 1000 - 200));
 
       setTimeout(() => {
-        osc[${osc}].dispose();
+        osc[${props.osc}].dispose();
       }, (${time} * 1000));
     `)
   }
@@ -168,12 +158,6 @@ const styles = StyleSheet.create({
     width: width * 0.8,
     height: 40
   },
-  // buttonText: {
-  //   color: 'white'
-  // },
-  // buttonTextOn: {
-  //   color: 'gray'
-  // },
   button: {
     alignItems: 'center',
     justifyContent: 'center',
