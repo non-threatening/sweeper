@@ -8,8 +8,11 @@ import {
 } from 'react-native'
 import { Colors } from 'react-native/Libraries/NewAppScreen'
 
-import WebAudio from './components/WebAudio'
-import { initialState, reducer, StateProvider } from './context'
+import WebAudio, {
+  initialState,
+  reducer,
+  OscProvider
+} from './components/WebAudio'
 
 import { SweepTextAdder } from './components/Sweeper'
 
@@ -19,7 +22,7 @@ const App = () => {
       <StatusBar barStyle='dark-content' />
       <WebAudio />
       <SafeAreaView style={styles.body}>
-        <StateProvider initialState={initialState} reducer={reducer}>
+        <OscProvider initialState={initialState} reducer={reducer}>
           <ScrollView
             contentInsetAdjustmentBehavior='automatic'
             style={styles.scrollView}>
@@ -29,7 +32,7 @@ const App = () => {
               </View>
             </View>
           </ScrollView>
-        </StateProvider>
+        </OscProvider>
       </SafeAreaView>
     </>
   )

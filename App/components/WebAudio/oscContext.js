@@ -7,6 +7,7 @@ export const initialState = {
 export const reducer = (state, action) => {
   switch (action.type) {
     case 'NEW_OSC':
+      console.log(state.osc + 1)
       return {
         osc: state.osc + 1
       }
@@ -16,12 +17,12 @@ export const reducer = (state, action) => {
   }
 }
 
-export const StateContext = createContext()
+export const OscStateContext = createContext()
 
-export const StateProvider = ({ children }) => (
-  <StateContext.Provider value={useReducer(reducer, initialState)}>
+export const OscProvider = ({ children }) => (
+  <OscStateContext.Provider value={useReducer(reducer, initialState)}>
     {children}
-  </StateContext.Provider>
+  </OscStateContext.Provider>
 )
 
-export const useStateValue = () => useContext(StateContext)
+export const useOscValue = () => useContext(OscStateContext)

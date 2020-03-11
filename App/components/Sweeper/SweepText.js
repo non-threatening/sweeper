@@ -69,8 +69,6 @@ export const SweepInputText = props => {
           disabled={active}
           onPress={() => {
             Sweep()
-            console.log(props.osc)
-            console.log(props)
           }}>
           <Text style={styles.text}>{active ? 'Playing...' : 'Sweep'}</Text>
         </TouchableHighlight>
