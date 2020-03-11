@@ -11,7 +11,8 @@ import { Colors } from 'react-native/Libraries/NewAppScreen'
 import WebAudio, {
   initialState,
   reducer,
-  OscProvider
+  OscProvider,
+  MasterController
 } from './components/WebAudio'
 
 import { SweepTextAdder } from './components/Sweeper'
@@ -26,10 +27,9 @@ const App = () => {
           <ScrollView
             contentInsetAdjustmentBehavior='automatic'
             style={styles.scrollView}>
-            <View style={styles.body}>
-              <View style={styles.sectionContainer}>
-                <SweepTextAdder />
-              </View>
+            <View style={styles.sectionContainer}>
+              <MasterController />
+              <SweepTextAdder />
             </View>
           </ScrollView>
         </OscProvider>
