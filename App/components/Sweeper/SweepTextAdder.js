@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { StyleSheet, TouchableNativeFeedback, Text, View } from 'react-native'
 import { SweepInputText } from './SweepText'
 import { useOscValue } from '../WebAudio'
@@ -21,6 +21,11 @@ export const SweepTextAdder = () => {
     // window.ReactNativeWebView.postMessage('inject from Sweeper');
     // `)
   }
+
+  useEffect(() => {
+    _add()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   return (
     <>

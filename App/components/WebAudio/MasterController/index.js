@@ -1,10 +1,1 @@
-import React from 'react'
-import { Text, View } from 'react-native'
-
-export const MasterController = () => {
-  return (
-    <View>
-      <Text>Thing</Text>
-    </View>
-  )
-}
+export { MasterController } from './MasterController'
