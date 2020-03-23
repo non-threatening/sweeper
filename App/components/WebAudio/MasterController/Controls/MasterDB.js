@@ -2,12 +2,12 @@ import React, { useEffect, useState } from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import Slider from '@react-native-community/slider'
 
-import { SetVolume } from './masterFunctions'
+import { SetVolume } from '../masterFunctions'
 
 import { Dimensions } from 'react-native'
 const width = Dimensions.get('window').width
 
-export const MasterController = () => {
+export const MasterDB = () => {
   const [db, setDb] = useState(0)
 
   useEffect(() => {
@@ -16,7 +16,7 @@ export const MasterController = () => {
 
   return (
     <View style={styles.container}>
-      <Text>Db: {db.toFixed(2)}</Text>
+      <Text>Master Db: {db.toFixed(2)}</Text>
       <Slider
         style={styles.slider}
         value={db}
@@ -38,11 +38,12 @@ const styles = StyleSheet.create({
     backgroundColor: 'plum',
     flex: 1,
     width: width,
-    marginBottom: 25,
+    marginTop: 10,
     paddingVertical: 10
   },
   slider: {
+    // transform: [{ rotate: '-90deg' }],
     width: width * 0.8,
-    height: 40
+    height: 30
   }
 })
