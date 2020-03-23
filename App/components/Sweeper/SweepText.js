@@ -33,7 +33,7 @@ export const SweepInputText = props => {
         backgroundColor: '#222',
         flex: 1,
         width: width,
-        marginBottom: 25,
+        marginBottom: 20,
         paddingVertical: 10
       }}>
       <Text style={styles.text}>Frequency</Text>
@@ -135,9 +135,10 @@ export const SweepInputText = props => {
 
 const styles = StyleSheet.create({
   textInput: {
-    height: 35,
+    height: 40,
     backgroundColor: '#ddd',
-    width: 50
+    width: 50,
+    fontSize: 14
   },
   textInputContainer: {
     flexDirection: 'row',

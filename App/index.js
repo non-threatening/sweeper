@@ -28,8 +28,8 @@ const App = () => {
             contentInsetAdjustmentBehavior='automatic'
             style={styles.scrollView}>
             <View style={styles.sectionContainer}>
-              <MasterController />
               <SweepTextAdder />
+              <MasterController />
             </View>
           </ScrollView>
         </OscProvider>

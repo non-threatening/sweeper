@@ -10,7 +10,8 @@
   },
   "dependencies": {
     "@react-native-community/slider": "^2.0.8",
-    "react": "^16.13.0",
+    "react": "^16.13.1",
+    "react-devtools": "^3.6.3",
     "react-native": "0.61.5",
     "react-native-webview": "^8.1.2"
   },
