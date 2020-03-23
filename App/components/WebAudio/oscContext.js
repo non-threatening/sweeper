@@ -11,6 +11,11 @@ export const reducer = (state, action) => {
       return {
         osc: state.osc + 1
       }
+    case 'KILL_OSC':
+      console.log(state.osc)
+      return {
+        osc: 0
+      }
 
     default:
       return state
