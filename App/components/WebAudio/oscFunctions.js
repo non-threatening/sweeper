@@ -1,14 +1,23 @@
-export function KillOsc(osc) {
+export function PostMessage(string) {
+  console.log(string)
   return this.webview.injectJavaScript(`
-      osc[${osc}].volume.rampTo(-Infinity, 0.2);
-      setTimeout(() => {
-        osc[${osc}].dispose();
-      }, 250);
-    `)
+    window.ReactNativeWebView.postMessage(${string});
+  `)
+}
+// PostMessage('post mess test')
+
+export function KillOsc(osc) {
+  // also remove from oscContext !!
+  return this.webview.injectJavaScript(`
+    osc[${osc}].volume.rampTo(-Infinity, 0.2);
+    setTimeout(() => {
+      osc[${osc}].dispose();
+    }, 250);
+  `)
 }
 
 export function SetVolume(osc, db) {
   return this.webview.injectJavaScript(`
-      osc[${osc}].volume.rampTo(${db}, 0.1);
-    `)
+    osc[${osc}].volume.rampTo(${db}, 0.1);
+  `)
 }
