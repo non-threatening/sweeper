@@ -17,10 +17,14 @@ export const SweepTextAdder = () => {
     dispatch({
       type: 'NEW_OSC'
     })
-    // return this.webview.injectJavaScript(`
-    // window.ReactNativeWebView.postMessage('inject from Sweeper');
-    // `)
   }
+
+  useEffect(() => {
+    // KillAllOsc, clear all sweepers
+    if (osc === 0) {
+      setKnobs([])
+    }
+  }, [osc])
 
   useEffect(() => {
     _add()
