@@ -7,23 +7,25 @@ export const SweepTextAdder = () => {
   const [{ osc }, dispatch] = useOscValue()
   const [knobs, setKnobs] = useState([])
 
-  // eslint-disable-next-line no-shadow
-  let newKnobs = knobs.map((item, osc) => {
-    return <SweepInputText key={osc} osc={osc} />
+  let newKnobs = knobs.map((item, index) => {
+    return <SweepInputText key={item.key} osc={item.key} />
   })
   const _add = () => {
-    let addKnob = { key: osc }
+    let newOsc = Math.max(...osc) + 1
+    let addKnob = { key: newOsc }
     setKnobs([...knobs, addKnob])
     dispatch({
-      type: 'NEW_OSC'
+      type: 'NEW_OSC',
+      payload: newOsc
     })
   }
 
   useEffect(() => {
     // KillAllOsc, clear all sweepers
-    if (osc === 0) {
+    if (osc.length - 1 === 0) {
       setKnobs([])
     }
+    console.log(osc)
   }, [osc])
 
   useEffect(() => {
