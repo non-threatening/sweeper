@@ -7,25 +7,22 @@ export const SweepTextAdder = () => {
   const [{ osc }, dispatch] = useOscValue()
   const [knobs, setKnobs] = useState([])
 
+  const _add = () => {
+    let addKnob = { key: osc ? osc.length : [0] }
+    setKnobs([...knobs, addKnob])
+    dispatch({
+      type: 'NEW_OSC'
+    })
+  }
   let newKnobs = knobs.map((item, index) => {
     return <SweepInputText key={item.key} osc={item.key} />
   })
-  const _add = () => {
-    let newOsc = Math.max(...osc) + 1
-    let addKnob = { key: newOsc }
-    setKnobs([...knobs, addKnob])
-    dispatch({
-      type: 'NEW_OSC',
-      payload: newOsc
-    })
-  }
 
   useEffect(() => {
     // KillAllOsc, clear all sweepers
-    if (osc.length - 1 === 0) {
+    if (!osc.length) {
       setKnobs([])
     }
-    console.log(osc)
   }, [osc])
 
   useEffect(() => {

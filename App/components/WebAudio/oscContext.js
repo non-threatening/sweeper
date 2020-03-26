@@ -1,25 +1,30 @@
 import React, { createContext, useContext, useReducer } from 'react'
 
 export const initialState = {
-  osc: [0]
+  osc: []
 }
 
 export const reducer = (state, action) => {
-  console.log(state)
+  console.log(state.osc)
   console.log(action)
   switch (action.type) {
     case 'NEW_OSC':
+      state.osc.push(state.osc.length)
       return {
-        osc: [...state.osc, action.payload]
+        osc: state.osc.length ? state.osc : [0]
       }
     case 'KILL_OSC':
       return {
-        osc: [0]
+        osc: []
       }
     case 'REMOVE_OSC':
-      // action.payload
+      let removeOsc = () => {
+        state.osc.splice(action.payload, 1)
+        return state.osc
+      }
+      console.log(removeOsc())
       return {
-        osc: state.osc - 1
+        osc: removeOsc()
       }
 
     default:
