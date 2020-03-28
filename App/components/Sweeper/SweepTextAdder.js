@@ -11,18 +11,24 @@ export const SweepTextAdder = () => {
     let addKnob = { key: osc ? osc.length : [0] }
     setKnobs([...knobs, addKnob])
     dispatch({
-      type: 'NEW_OSC'
+      type: 'NEW_OSC',
+      payload: 'sweeper'
     })
+    console.log(knobs)
   }
   let newKnobs = knobs.map((item, index) => {
-    return <SweepInputText key={item.key} osc={item.key} />
+    return <SweepInputText key={item.key} oscNumber={item.key} />
   })
 
   useEffect(() => {
     // KillAllOsc, clear all sweepers
     if (!osc.length) {
       setKnobs([])
+    } else {
+      // Update knobs on osc state change, like when one is removed
+      setKnobs(knobs.filter(value => osc.includes(value.key)))
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [osc])
 
   useEffect(() => {

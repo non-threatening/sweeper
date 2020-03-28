@@ -10,6 +10,7 @@ import Slider from '@react-native-community/slider'
 import { Dimensions } from 'react-native'
 
 import { KillOsc, SetVolume } from '../WebAudio/oscFunctions'
+import { useOscValue } from '../WebAudio'
 
 const width = Dimensions.get('window').width
 
@@ -26,6 +27,9 @@ export const SweepInputText = props => {
   const [db, setDb] = useState(0)
   const [active, setActive] = useState(false)
 
+  const [{ osc }, dispatch] = useOscValue()
+  osc
+
   return (
     <View
       style={{
@@ -36,6 +40,18 @@ export const SweepInputText = props => {
         marginBottom: 20,
         paddingVertical: 10
       }}>
+      <TouchableHighlight
+        style={active ? styles.buttonOn : styles.button}
+        disabled={active}
+        onPress={() => {
+          dispatch({
+            type: 'REMOVE_OSC',
+            payload: props.oscNumber
+          })
+        }}>
+        <Text style={styles.text}>X</Text>
+      </TouchableHighlight>
+      <Text>{props.oscNumber}</Text>
       <Text style={styles.text}>Frequency</Text>
       <View style={styles.inputsWrapper}>
         <View style={styles.textInputContainer}>
@@ -100,11 +116,11 @@ export const SweepInputText = props => {
 
   function Stop() {
     setActive(false)
-    KillOsc(props.osc)
+    KillOsc(props.oscNumber)
   }
 
   function Volume() {
-    SetVolume(props.osc, db)
+    SetVolume(props.oscNumber, db)
   }
 
   function Sweep() {
@@ -114,20 +130,20 @@ export const SweepInputText = props => {
     }, time * 1000 + 200)
 
     return this.webview.injectJavaScript(`
-      osc[${props.osc}] = new Tone.Oscillator({
+      osc[${props.oscNumber}] = new Tone.Oscillator({
         'type': 'sine',
         'volume': '-Infinity',
         'frequency': ${start}
       }).chain(output, Tone.Master).start();
-      osc[${props.osc}].volume.rampTo(${db}, 0.2);
-      osc[${props.osc}].frequency.rampTo(${end}, ${time});
+      osc[${props.oscNumber}].volume.rampTo(${db}, 0.2);
+      osc[${props.oscNumber}].frequency.rampTo(${end}, ${time});
       
       setTimeout(() => {
-        osc[${props.osc}].volume.rampTo(-Infinity, 0.2);
+        osc[${props.oscNumber}].volume.rampTo(-Infinity, 0.2);
       }, (${time} * 1000 - 200));
 
       setTimeout(() => {
-        osc[${props.osc}].dispose();
+        osc[${props.oscNumber}].dispose();
       }, (${time} * 1000));
     `)
   }

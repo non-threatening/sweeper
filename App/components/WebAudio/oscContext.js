@@ -5,28 +5,37 @@ export const initialState = {
 }
 
 export const reducer = (state, action) => {
-  console.log(state.osc)
+  // console.log(state.osc)
   console.log(action)
+
+  const newOsc = () => {
+    const nextOsc = state.osc.length ? Math.max(...state.osc) + 1 : 0
+    state.osc.push(nextOsc)
+    console.log(`new osc state: ${state.osc}`)
+    return state.osc.length ? state.osc : [0]
+  }
+
+  const removeOsc = removed => {
+    const newArr = [...state.osc]
+    removed = newArr.indexOf(removed)
+    newArr.splice(removed, 1)
+    console.log(`removed osc state: ${newArr}`)
+    return newArr.length ? newArr : [0]
+  }
+
   switch (action.type) {
     case 'NEW_OSC':
-      state.osc.push(state.osc.length)
       return {
-        osc: state.osc.length ? state.osc : [0]
+        osc: newOsc()
       }
     case 'KILL_OSC':
       return {
         osc: []
       }
     case 'REMOVE_OSC':
-      let removeOsc = () => {
-        state.osc.splice(action.payload, 1)
-        return state.osc
-      }
-      console.log(removeOsc())
       return {
-        osc: removeOsc()
+        osc: removeOsc(action.payload)
       }
-
     default:
       return state
   }
