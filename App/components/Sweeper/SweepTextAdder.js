@@ -8,11 +8,13 @@ export const SweepTextAdder = () => {
   const [knobs, setKnobs] = useState([])
 
   const _add = () => {
-    let addKnob = { key: osc ? osc.length : [0] }
+    let incOsc = Number.isFinite(Math.max(...osc)) ? Math.max(...osc) + 1 : 0
+    let addKnob = { key: incOsc }
+    console.log(osc)
     setKnobs([...knobs, addKnob])
     dispatch({
       type: 'NEW_OSC',
-      payload: 'sweeper'
+      payload: incOsc
     })
     console.log(knobs)
   }
@@ -21,6 +23,9 @@ export const SweepTextAdder = () => {
   })
 
   useEffect(() => {
+    console.log(osc)
+    console.log(knobs)
+
     // KillAllOsc, clear all sweepers
     if (!osc.length) {
       setKnobs([])
