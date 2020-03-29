@@ -12,7 +12,7 @@ export function KillOsc(osc) {
     osc[${osc}].volume.rampTo(-Infinity, 0.2);
     setTimeout(() => {
       osc[${osc}].dispose();
-    }, 250);
+    }, 201);
   `)
 }
 

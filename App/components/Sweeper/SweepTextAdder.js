@@ -10,13 +10,11 @@ export const SweepTextAdder = () => {
   const _add = () => {
     let incOsc = Number.isFinite(Math.max(...osc)) ? Math.max(...osc) + 1 : 0
     let addKnob = { key: incOsc }
-    console.log(osc)
     setKnobs([...knobs, addKnob])
     dispatch({
       type: 'NEW_OSC',
       payload: incOsc
     })
-    console.log(knobs)
   }
   let newKnobs = knobs.map((item, index) => {
     return <SweepInputText key={item.key} oscNumber={item.key} />

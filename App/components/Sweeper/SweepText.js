@@ -41,15 +41,18 @@ export const SweepInputText = props => {
         paddingVertical: 10
       }}>
       <TouchableHighlight
-        style={active ? styles.buttonOn : styles.button}
-        disabled={active}
+        style={styles.button}
         onPress={() => {
+          Remove(props.oscNumber)
           dispatch({
             type: 'REMOVE_OSC',
             payload: props.oscNumber
           })
         }}>
-        <Text style={styles.text}>X</Text>
+        <View style={{ flexDirection: 'column' }}>
+          <Text style={{ color: 'red' }}>X</Text>
+          <Text style={styles.text}>Remove</Text>
+        </View>
       </TouchableHighlight>
       <Text>{props.oscNumber}</Text>
       <Text style={styles.text}>Frequency</Text>
@@ -114,6 +117,10 @@ export const SweepInputText = props => {
     </View>
   )
 
+  function Remove() {
+    KillOsc(props.oscNumber)
+  }
+
   function Stop() {
     setActive(false)
     KillOsc(props.oscNumber)
@@ -167,7 +174,7 @@ const styles = StyleSheet.create({
     width: width
   },
   text: {
-    color: 'white'
+    // color: 'white'
   },
   slider: {
     width: width * 0.8,
