@@ -15,7 +15,7 @@ export function KillAllOscButton() {
         style={styles.button}
         onPress={() => {
           dispatch({
-            type: 'KILL_OSC'
+            type: 'KILL_OSC',
           })
           return this.webview.injectJavaScript(`
             osc.forEach(o => { o.dispose(); });
@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
     flex: 1,
     width: width,
     marginTop: 10,
-    paddingVertical: 10
+    paddingVertical: 10,
   },
   button: {
     alignItems: 'center',
@@ -44,6 +44,6 @@ const styles = StyleSheet.create({
     backgroundColor: 'gray',
     height: 30,
     width: width * 0.4,
-    margin: 5
-  }
+    margin: 5,
+  },
 })

@@ -4,7 +4,7 @@ import {
   TextInput,
   Text,
   TouchableHighlight,
-  View
+  View,
 } from 'react-native'
 import Slider from '@react-native-community/slider'
 import { Dimensions } from 'react-native'
@@ -14,13 +14,13 @@ import { useOscValue } from '../WebAudio'
 
 const width = Dimensions.get('window').width
 
-const Input = props => {
+const Input = (props) => {
   return (
     <TextInput style={styles.textInput} keyboardType={'numeric'} {...props} />
   )
 }
 
-export const SweepInputText = props => {
+export const SweepInputText = (props) => {
   const [start, setStart] = useState(2500)
   const [end, setEnd] = useState(100)
   const [time, setTime] = useState(5)
@@ -38,7 +38,7 @@ export const SweepInputText = props => {
         flex: 1,
         width: width,
         marginBottom: 20,
-        paddingVertical: 10
+        paddingVertical: 10,
       }}>
       <TouchableHighlight
         style={styles.button}
@@ -46,7 +46,7 @@ export const SweepInputText = props => {
           Remove(props.oscNumber)
           dispatch({
             type: 'REMOVE_OSC',
-            payload: props.oscNumber
+            payload: props.oscNumber,
           })
         }}>
         <View style={{ flexDirection: 'column' }}>
@@ -60,7 +60,7 @@ export const SweepInputText = props => {
         <View style={styles.textInputContainer}>
           <Text style={styles.text}>Start: </Text>
           <Input
-            onChangeText={text => setStart(text)}
+            onChangeText={(text) => setStart(text)}
             value={start.toString()}
           />
           <Text style={styles.text}> Hz </Text>
@@ -68,14 +68,14 @@ export const SweepInputText = props => {
 
         <View style={styles.textInputContainer}>
           <Text style={styles.text}>End: </Text>
-          <Input onChangeText={text => setEnd(text)} value={end.toString()} />
+          <Input onChangeText={(text) => setEnd(text)} value={end.toString()} />
           <Text style={styles.text}> Hz </Text>
         </View>
       </View>
 
       <View style={styles.textInputContainer}>
         <Text style={styles.text}>Seconds: </Text>
-        <Input onChangeText={text => setTime(text)} value={time.toString()} />
+        <Input onChangeText={(text) => setTime(text)} value={time.toString()} />
         <Text style={styles.text}>
           {' '}
           ( Min: {parseFloat(time / 60).toFixed(2)} )
@@ -105,7 +105,7 @@ export const SweepInputText = props => {
       <Slider
         style={styles.slider}
         value={db}
-        onValueChange={value => {
+        onValueChange={(value) => {
           setDb(value)
           Volume()
         }}
@@ -161,24 +161,24 @@ const styles = StyleSheet.create({
     height: 40,
     backgroundColor: '#ddd',
     width: 50,
-    fontSize: 14
+    fontSize: 14,
   },
   textInputContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginVertical: 5
+    marginVertical: 5,
   },
   inputsWrapper: {
     flexDirection: 'row',
     justifyContent: 'space-evenly',
-    width: width
+    width: width,
   },
   text: {
     // color: 'white'
   },
   slider: {
     width: width * 0.8,
-    height: 40
+    height: 40,
   },
   button: {
     alignItems: 'center',
@@ -187,7 +187,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'gray',
     height: 30,
     width: width * 0.4,
-    margin: 5
+    margin: 5,
   },
   buttonOn: {
     alignItems: 'center',
@@ -196,6 +196,6 @@ const styles = StyleSheet.create({
     backgroundColor: 'green',
     height: 30,
     width: width * 0.4,
-    margin: 5
-  }
+    margin: 5,
+  },
 })

@@ -20,7 +20,7 @@ export const MasterDB = () => {
       <Slider
         style={styles.slider}
         value={db}
-        onValueChange={value => {
+        onValueChange={(value) => {
           setDb(value)
         }}
         minimumValue={-50}
@@ -39,11 +39,11 @@ const styles = StyleSheet.create({
     flex: 1,
     width: width,
     marginTop: 10,
-    paddingVertical: 10
+    paddingVertical: 10,
   },
   slider: {
     // transform: [{ rotate: '-90deg' }],
     width: width * 0.8,
-    height: 30
-  }
+    height: 30,
+  },
 })

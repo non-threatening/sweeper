@@ -1,39 +1,38 @@
 import React, { createContext, useContext, useReducer } from 'react'
 
 export const initialState = {
-  osc: []
+  osc: [],
 }
 
 export const reducer = (state, action) => {
   console.log(state.osc)
   // console.log(action)
 
-  const newOsc = added => {
+  const newOsc = (added) => {
     const nextOsc = [...state.osc]
     nextOsc.push(added)
     return nextOsc.length ? nextOsc : [0]
   }
 
-  const removeOsc = removed => {
+  const removeOsc = (removed) => {
     const newArr = [...state.osc]
     removed = newArr.indexOf(removed)
     newArr.splice(removed, 1)
-    console.log(`removed osc state: ${newArr}`)
     return newArr.length ? newArr : [0]
   }
 
   switch (action.type) {
     case 'NEW_OSC':
       return {
-        osc: newOsc(action.payload)
+        osc: newOsc(action.payload),
       }
     case 'KILL_OSC':
       return {
-        osc: []
+        osc: [],
       }
     case 'REMOVE_OSC':
       return {
-        osc: removeOsc(action.payload)
+        osc: removeOsc(action.payload),
       }
     default:
       return state

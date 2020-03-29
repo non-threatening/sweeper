@@ -13,7 +13,7 @@ export const SweepTextAdder = () => {
     setKnobs([...knobs, addKnob])
     dispatch({
       type: 'NEW_OSC',
-      payload: incOsc
+      payload: incOsc,
     })
   }
   let newKnobs = knobs.map((item, index) => {
@@ -29,7 +29,7 @@ export const SweepTextAdder = () => {
       setKnobs([])
     } else {
       // Update knobs on osc state change, like when one is removed
-      setKnobs(knobs.filter(value => osc.includes(value.key)))
+      setKnobs(knobs.filter((value) => osc.includes(value.key)))
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [osc])
@@ -60,6 +60,6 @@ const styles = StyleSheet.create({
     backgroundColor: 'gray',
     height: 40,
     marginLeft: 25,
-    marginRight: 25
-  }
+    marginRight: 25,
+  },
 })

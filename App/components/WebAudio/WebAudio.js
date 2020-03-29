@@ -7,9 +7,9 @@ const WebAudio = () => {
       originWhitelist={['*']}
       style={{ height: 0, width: 0, opacity: 0 }}
       source={{ uri: 'file:///android_asset/index/index.html' }}
-      ref={ref => (this.webview = ref)}
+      ref={(ref) => (this.webview = ref)}
       onLoad={() => console.log('WebView loaded')}
-      onMessage={event => console.log(event.nativeEvent.data)}
+      onMessage={(event) => console.log(event.nativeEvent.data)}
       mediaPlaybackRequiresUserAction={false}
     />
   )
