@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import Slider from '@react-native-community/slider'
 
-import { SetVolume } from '../masterFunctions'
+import { SetVolumeMaster } from '../masterFunctions'
 
 import { Dimensions } from 'react-native'
 const width = Dimensions.get('window').width
@@ -11,7 +11,7 @@ export const MasterDB = () => {
   const [db, setDb] = useState(0)
 
   useEffect(() => {
-    SetVolume(db)
+    SetVolumeMaster(db)
   }, [db])
 
   return (

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import {
   StyleSheet,
   TextInput,
@@ -21,6 +21,7 @@ const Input = (props) => {
 }
 
 export const SweepInputText = (props) => {
+  const timeout = useRef(null)
   const [start, setStart] = useState(2500)
   const [end, setEnd] = useState(100)
   const [time, setTime] = useState(5)
@@ -29,6 +30,12 @@ export const SweepInputText = (props) => {
 
   const [{ osc }, dispatch] = useOscValue()
   osc
+
+  useEffect(() => {
+    return () => {
+      clearTimeout(timeout.current)
+    }
+  }, [])
 
   return (
     <View
@@ -44,42 +51,35 @@ export const SweepInputText = (props) => {
         style={styles.button}
         onPress={() => {
           Remove(props.oscNumber)
-          dispatch({
-            type: 'REMOVE_OSC',
-            payload: props.oscNumber,
-          })
         }}>
         <View style={{ flexDirection: 'column' }}>
           <Text style={{ color: 'red' }}>X</Text>
-          <Text style={styles.text}>Remove</Text>
+          <Text>Remove</Text>
         </View>
       </TouchableHighlight>
       <Text>{props.oscNumber}</Text>
-      <Text style={styles.text}>Frequency</Text>
+      <Text>Frequency</Text>
       <View style={styles.inputsWrapper}>
         <View style={styles.textInputContainer}>
-          <Text style={styles.text}>Start: </Text>
+          <Text>Start: </Text>
           <Input
             onChangeText={(text) => setStart(text)}
             value={start.toString()}
           />
-          <Text style={styles.text}> Hz </Text>
+          <Text> Hz </Text>
         </View>
 
         <View style={styles.textInputContainer}>
-          <Text style={styles.text}>End: </Text>
+          <Text>End: </Text>
           <Input onChangeText={(text) => setEnd(text)} value={end.toString()} />
-          <Text style={styles.text}> Hz </Text>
+          <Text> Hz </Text>
         </View>
       </View>
 
       <View style={styles.textInputContainer}>
-        <Text style={styles.text}>Seconds: </Text>
+        <Text>Seconds: </Text>
         <Input onChangeText={(text) => setTime(text)} value={time.toString()} />
-        <Text style={styles.text}>
-          {' '}
-          ( Min: {parseFloat(time / 60).toFixed(2)} )
-        </Text>
+        <Text>( Min: {parseFloat(time / 60).toFixed(2)} )</Text>
       </View>
 
       <View style={styles.textInputContainer}>
@@ -89,7 +89,7 @@ export const SweepInputText = (props) => {
           onPress={() => {
             Sweep()
           }}>
-          <Text style={styles.text}>{active ? 'Playing...' : 'Sweep'}</Text>
+          <Text>{active ? 'Playing...' : 'Sweep'}</Text>
         </TouchableHighlight>
 
         <TouchableHighlight
@@ -97,7 +97,7 @@ export const SweepInputText = (props) => {
           onPress={() => {
             Stop()
           }}>
-          <Text style={styles.text}>Stop</Text>
+          <Text>Stop</Text>
         </TouchableHighlight>
       </View>
 
@@ -119,11 +119,15 @@ export const SweepInputText = (props) => {
 
   function Remove() {
     KillOsc(props.oscNumber)
+    dispatch({
+      type: 'REMOVE_OSC',
+      payload: props.oscNumber,
+    })
   }
 
   function Stop() {
-    setActive(false)
     KillOsc(props.oscNumber)
+    setActive(false)
   }
 
   function Volume() {
@@ -132,7 +136,7 @@ export const SweepInputText = (props) => {
 
   function Sweep() {
     setActive(true)
-    setTimeout(() => {
+    timeout.current = setTimeout(() => {
       setActive(false)
     }, time * 1000 + 200)
 
@@ -172,9 +176,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-evenly',
     width: width,
-  },
-  text: {
-    // color: 'white'
   },
   slider: {
     width: width * 0.8,

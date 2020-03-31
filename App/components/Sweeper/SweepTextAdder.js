@@ -23,12 +23,9 @@ export const SweepTextAdder = () => {
   useEffect(() => {
     console.log(osc)
     console.log(knobs)
-
-    // KillAllOsc, clear all sweepers
     if (!osc.length) {
       setKnobs([])
     } else {
-      // Update knobs on osc state change, like when one is removed
       setKnobs(knobs.filter((value) => osc.includes(value.key)))
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps

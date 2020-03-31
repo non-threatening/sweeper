@@ -4,7 +4,10 @@ export function PostMessage(string) {
     window.ReactNativeWebView.postMessage(${string});
   `)
 }
-// PostMessage('post mess test')
+// setTimeout(() => {
+//   PostMessage(('post message function')
+// //   PostMessage(console.log('post message function'))
+// }, 1000)
 
 export function KillOsc(osc) {
   // also remove from oscContext !!

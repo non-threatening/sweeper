@@ -4,6 +4,7 @@ import { StyleSheet, Text, TouchableHighlight, View } from 'react-native'
 import { Dimensions } from 'react-native'
 const width = Dimensions.get('window').width
 
+import { KillAllOsc } from '../masterFunctions'
 import { useOscValue } from '../../'
 
 export function KillAllOscButton() {
@@ -14,13 +15,10 @@ export function KillAllOscButton() {
       <TouchableHighlight
         style={styles.button}
         onPress={() => {
+          KillAllOsc()
           dispatch({
             type: 'KILL_OSC',
           })
-          return this.webview.injectJavaScript(`
-            osc.forEach(o => { o.dispose(); });
-            osc.length = 0;
-          `)
         }}>
         <Text style={styles.text}>Stop</Text>
       </TouchableHighlight>

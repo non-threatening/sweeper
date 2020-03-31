@@ -6,7 +6,6 @@ export const initialState = {
 
 export const reducer = (state, action) => {
   console.log(state.osc)
-  // console.log(action)
 
   const newOsc = (added) => {
     const nextOsc = [...state.osc]
@@ -18,7 +17,7 @@ export const reducer = (state, action) => {
     const newArr = [...state.osc]
     removed = newArr.indexOf(removed)
     newArr.splice(removed, 1)
-    return newArr.length ? newArr : [0]
+    return newArr.length ? newArr : []
   }
 
   switch (action.type) {

@@ -4,7 +4,7 @@ import {
   ScrollView,
   StatusBar,
   StyleSheet,
-  View
+  View,
 } from 'react-native'
 import { Colors } from 'react-native/Libraries/NewAppScreen'
 
@@ -12,7 +12,7 @@ import WebAudio, {
   initialState,
   reducer,
   OscProvider,
-  MasterController
+  MasterController,
 } from './components/WebAudio'
 
 import { SweepTextAdder } from './components/Sweeper'
@@ -20,12 +20,12 @@ import { SweepTextAdder } from './components/Sweeper'
 const App = () => {
   return (
     <>
-      <StatusBar barStyle='dark-content' />
+      <StatusBar barStyle={'dark-content'} />
       <WebAudio />
       <SafeAreaView style={styles.body}>
         <OscProvider initialState={initialState} reducer={reducer}>
           <ScrollView
-            contentInsetAdjustmentBehavior='automatic'
+            contentInsetAdjustmentBehavior={'automatic'}
             style={styles.scrollView}>
             <View style={styles.sectionContainer}>
               <SweepTextAdder />
@@ -40,14 +40,14 @@ const App = () => {
 
 const styles = StyleSheet.create({
   scrollView: {
-    backgroundColor: Colors.darker
+    backgroundColor: Colors.darker,
   },
   body: {
-    backgroundColor: Colors.black
+    backgroundColor: Colors.black,
   },
   sectionContainer: {
-    marginTop: 32
-  }
+    marginTop: 32,
+  },
 })
 
 export default App
