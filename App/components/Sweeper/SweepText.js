@@ -48,14 +48,16 @@ export const SweepInputText = (props) => {
         paddingVertical: 10,
       }}>
       <TouchableHighlight
-        style={styles.button}
+        style={{
+          alignItems: 'center',
+          alignSelf: 'flex-end',
+          width: 36,
+          marginRight: 15,
+        }}
         onPress={() => {
           Remove(props.oscNumber)
         }}>
-        <View style={{ flexDirection: 'column' }}>
-          <Text style={{ color: 'red' }}>X</Text>
-          <Text>Remove</Text>
-        </View>
+        <Text style={{ fontSize: 36 }}>X</Text>
       </TouchableHighlight>
       <Text>{props.oscNumber}</Text>
       <Text>Frequency</Text>

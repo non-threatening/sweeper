@@ -6,11 +6,17 @@ export const initialState = {
 
 export const reducer = (state, action) => {
   console.log(state.osc)
+  console.log(action)
 
-  const newOsc = (added) => {
+  const newOsc = (kind) => {
+    console.log(kind)
+    let incOsc = Number.isFinite(Math.max(...state.osc))
+      ? Math.max(...state.osc) + 1
+      : 0
+    console.log(incOsc)
     const nextOsc = [...state.osc]
-    nextOsc.push(added)
-    return nextOsc.length ? nextOsc : [0]
+    nextOsc.push(incOsc)
+    return state.osc.length ? nextOsc : [0]
   }
 
   const removeOsc = (removed) => {
@@ -23,7 +29,7 @@ export const reducer = (state, action) => {
   switch (action.type) {
     case 'NEW_OSC':
       return {
-        osc: newOsc(action.payload),
+        osc: newOsc(action.kind),
       }
     case 'KILL_OSC':
       return {

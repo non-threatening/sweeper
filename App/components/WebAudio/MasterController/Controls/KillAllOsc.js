@@ -5,7 +5,7 @@ import { Dimensions } from 'react-native'
 const width = Dimensions.get('window').width
 
 import { KillAllOsc } from '../masterFunctions'
-import { useOscValue } from '../../'
+import { useOscValue } from '../../oscContext'
 
 export function KillAllOscButton() {
   const [{ osc }, dispatch] = useOscValue()
@@ -20,7 +20,7 @@ export function KillAllOscButton() {
             type: 'KILL_OSC',
           })
         }}>
-        <Text style={styles.text}>Stop</Text>
+        <Text style={styles.text}>Clear All</Text>
       </TouchableHighlight>
     </View>
   )
