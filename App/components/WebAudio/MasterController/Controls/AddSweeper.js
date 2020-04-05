@@ -6,7 +6,6 @@ export const AddSweeper = () => {
   const [{ osc }, dispatch] = useOscValue()
   osc
   const _add = () => {
-    console.log('_add')
     dispatch({
       type: 'NEW_OSC',
       kind: 'sweeper',
@@ -14,15 +13,11 @@ export const AddSweeper = () => {
   }
 
   return (
-    <>
-      <TouchableHighlight onPress={_add}>
-        <View style={styles.button}>
-          <Text style={{ textAlign: 'center', marginTop: 10 }}>
-            ADD SWEEPER
-          </Text>
-        </View>
-      </TouchableHighlight>
-    </>
+    <TouchableHighlight onPress={_add}>
+      <View style={styles.button}>
+        <Text style={{ textAlign: 'center', marginTop: 10 }}>ADD SWEEPER</Text>
+      </View>
+    </TouchableHighlight>
   )
 }
 

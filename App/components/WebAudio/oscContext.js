@@ -13,7 +13,6 @@ export const reducer = (state, action) => {
     let incOsc = Number.isFinite(Math.max(...state.osc))
       ? Math.max(...state.osc) + 1
       : 0
-    console.log(incOsc)
     const nextOsc = [...state.osc]
     nextOsc.push(incOsc)
     return state.osc.length ? nextOsc : [0]

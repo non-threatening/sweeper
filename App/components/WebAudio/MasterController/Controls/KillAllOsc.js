@@ -11,30 +11,20 @@ export function KillAllOscButton() {
   const [{ osc }, dispatch] = useOscValue()
   osc
   return (
-    <View style={styles.container}>
-      <TouchableHighlight
-        style={styles.button}
-        onPress={() => {
-          KillAllOsc()
-          dispatch({
-            type: 'KILL_OSC',
-          })
-        }}>
-        <Text style={styles.text}>Clear All</Text>
-      </TouchableHighlight>
-    </View>
+    <TouchableHighlight
+      style={styles.button}
+      onPress={() => {
+        KillAllOsc()
+        dispatch({
+          type: 'KILL_OSC',
+        })
+      }}>
+      <Text style={styles.text}>Clear All</Text>
+    </TouchableHighlight>
   )
 }
 
 const styles = StyleSheet.create({
-  container: {
-    alignItems: 'center',
-    backgroundColor: 'plum',
-    flex: 1,
-    width: width,
-    marginTop: 10,
-    paddingVertical: 10,
-  },
   button: {
     alignItems: 'center',
     justifyContent: 'center',

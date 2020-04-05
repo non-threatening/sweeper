@@ -13,17 +13,14 @@ export const SweepTextAdder = () => {
   useEffect(() => {
     console.log(osc)
     if (!osc.length) {
-      // All cleared
-      setKnobs([])
+      setKnobs([]) // Clear all knobs
     } else if (osc.length > knobs.length) {
       let addKnob = {
         key: Number.isFinite(Math.max(...osc)) ? Math.max(...osc) : 0,
       }
-      // Add knob
-      setKnobs([...knobs, addKnob])
+      setKnobs([...knobs, addKnob]) // Add knob
     } else {
-      // Remove knob
-      setKnobs(knobs.filter((value) => osc.includes(value.key)))
+      setKnobs(knobs.filter((value) => osc.includes(value.key))) // Remove knob
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [osc])

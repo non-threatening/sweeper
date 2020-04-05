@@ -1,12 +1,14 @@
 import React from 'react'
-import { MasterDB } from './Controls/MasterDB'
-import { KillAllOscButton } from './Controls/KillAllOsc.js'
+// import { MasterDB } from './Controls/MasterDB'
+import { KillAllOscButton } from './Controls/KillAllOsc'
+import { AddSweeper } from './Controls/AddSweeper'
 
 export const MasterController = () => {
   return (
     <>
       <KillAllOscButton />
-      <MasterDB />
+      <AddSweeper />
+      {/* <MasterDB /> */}
     </>
   )
 }
