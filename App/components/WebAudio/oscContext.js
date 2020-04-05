@@ -5,16 +5,11 @@ export const initialState = {
 }
 
 export const reducer = (state, action) => {
-  console.log(state.osc)
-  console.log(action)
-
   const newOsc = (kind) => {
-    console.log(kind)
     let incOsc = Number.isFinite(Math.max(...state.osc))
       ? Math.max(...state.osc) + 1
       : 0
-    const nextOsc = [...state.osc]
-    nextOsc.push(incOsc)
+    const nextOsc = [...state.osc, incOsc]
     return state.osc.length ? nextOsc : [0]
   }
 

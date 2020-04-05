@@ -1,1 +1,1 @@
-export { SweepTextAdder } from './SweepTextAdder'
+export { SweepTextAdder as Sweeper } from './SweepTextAdder'

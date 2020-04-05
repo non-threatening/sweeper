@@ -1,7 +1,6 @@
 import React from 'react'
-import { StyleSheet, Text, TouchableHighlight, View } from 'react-native'
+import { Dimensions, StyleSheet, Text, TouchableHighlight } from 'react-native'
 
-import { Dimensions } from 'react-native'
 const width = Dimensions.get('window').width
 
 import { KillAllOsc } from '../masterFunctions'

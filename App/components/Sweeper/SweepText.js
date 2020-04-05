@@ -9,7 +9,7 @@ import {
 import Slider from '@react-native-community/slider'
 import { Dimensions } from 'react-native'
 
-import { KillOsc, SetVolume } from '../WebAudio/oscFunctions'
+import { KillSingleOsc, SetSingleVolume } from '../WebAudio/oscFunctions'
 import { useOscValue } from '../WebAudio'
 
 const width = Dimensions.get('window').width
@@ -41,25 +41,26 @@ export const SweepInputText = (props) => {
     <View
       style={{
         alignItems: 'center',
-        backgroundColor: '#222',
+        backgroundColor: '#333',
         flex: 1,
         width: width,
         marginBottom: 20,
-        paddingVertical: 10,
+        paddingTop: 30,
+        paddingBottom: 10,
       }}>
       <TouchableHighlight
         style={{
           alignItems: 'center',
           alignSelf: 'flex-end',
           width: 36,
-          marginRight: 15,
+          right: 10,
+          position: 'absolute',
         }}
         onPress={() => {
           Remove(props.oscNumber)
         }}>
         <Text style={{ fontSize: 36 }}>X</Text>
       </TouchableHighlight>
-      <Text>{props.oscNumber}</Text>
       <Text>Frequency</Text>
       <View style={styles.inputsWrapper}>
         <View style={styles.textInputContainer}>
@@ -120,7 +121,7 @@ export const SweepInputText = (props) => {
   )
 
   function Remove() {
-    KillOsc(props.oscNumber)
+    KillSingleOsc(props.oscNumber)
     dispatch({
       type: 'REMOVE_OSC',
       payload: props.oscNumber,
@@ -128,12 +129,12 @@ export const SweepInputText = (props) => {
   }
 
   function Stop() {
-    KillOsc(props.oscNumber)
+    KillSingleOsc(props.oscNumber)
     setActive(false)
   }
 
   function Volume() {
-    SetVolume(props.oscNumber, db)
+    SetSingleVolume(props.oscNumber, db)
   }
 
   function Sweep() {
@@ -196,7 +197,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     padding: 10,
-    backgroundColor: 'green',
+    backgroundColor: 'dimgray',
     height: 30,
     width: width * 0.4,
     margin: 5,

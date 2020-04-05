@@ -1,6 +1,8 @@
 import React from 'react'
-import { StyleSheet, TouchableHighlight, Text, View } from 'react-native'
+import { Dimensions, StyleSheet, TouchableHighlight, Text } from 'react-native'
 import { useOscValue } from '../../oscContext'
+
+const width = Dimensions.get('window').width
 
 export const AddSweeper = () => {
   const [{ osc }, dispatch] = useOscValue()
@@ -13,19 +15,20 @@ export const AddSweeper = () => {
   }
 
   return (
-    <TouchableHighlight onPress={_add}>
-      <View style={styles.button}>
-        <Text style={{ textAlign: 'center', marginTop: 10 }}>ADD SWEEPER</Text>
-      </View>
+    <TouchableHighlight style={styles.button} onPress={_add}>
+      <Text>Add Sweeper</Text>
     </TouchableHighlight>
   )
 }
 
 const styles = StyleSheet.create({
   button: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 10,
     backgroundColor: 'gray',
-    height: 40,
-    marginLeft: 25,
-    marginRight: 25,
+    height: 30,
+    width: width * 0.4,
+    margin: 15,
   },
 })

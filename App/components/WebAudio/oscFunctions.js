@@ -9,8 +9,7 @@ export function PostMessage(string) {
 // //   PostMessage(console.log('post message function'))
 // }, 1000)
 
-export function KillOsc(osc) {
-  // also remove from oscContext !!
+export function KillSingleOsc(osc) {
   return this.webview.injectJavaScript(`
     osc[${osc}].volume.rampTo(-Infinity, 0.2);
     setTimeout(() => {
@@ -19,7 +18,7 @@ export function KillOsc(osc) {
   `)
 }
 
-export function SetVolume(osc, db) {
+export function SetSingleVolume(osc, db) {
   return this.webview.injectJavaScript(`
     osc[${osc}].volume.rampTo(${db}, 0.1);
   `)
