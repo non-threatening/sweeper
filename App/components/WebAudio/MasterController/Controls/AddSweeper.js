@@ -1,5 +1,11 @@
 import React from 'react'
-import { Dimensions, StyleSheet, TouchableHighlight, Text } from 'react-native'
+import {
+  Dimensions,
+  StyleSheet,
+  TouchableNativeFeedback,
+  Text,
+  View,
+} from 'react-native'
 import { useOscValue } from '../../oscContext'
 
 const width = Dimensions.get('window').width
@@ -15,9 +21,13 @@ export const AddSweeper = () => {
   }
 
   return (
-    <TouchableHighlight style={styles.button} onPress={_add}>
-      <Text>Add Sweeper</Text>
-    </TouchableHighlight>
+    <TouchableNativeFeedback
+      background={TouchableNativeFeedback.Ripple('#000', false)}
+      onPress={_add}>
+      <View style={styles.button}>
+        <Text>Add Sweeper</Text>
+      </View>
+    </TouchableNativeFeedback>
   )
 }
 

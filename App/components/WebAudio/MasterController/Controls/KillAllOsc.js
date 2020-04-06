@@ -1,5 +1,11 @@
 import React from 'react'
-import { Dimensions, StyleSheet, Text, TouchableHighlight } from 'react-native'
+import {
+  Dimensions,
+  StyleSheet,
+  Text,
+  TouchableNativeFeedback,
+  View,
+} from 'react-native'
 
 const width = Dimensions.get('window').width
 
@@ -10,16 +16,18 @@ export function KillAllOscButton() {
   const [{ osc }, dispatch] = useOscValue()
   osc
   return (
-    <TouchableHighlight
-      style={styles.button}
+    <TouchableNativeFeedback
+      background={TouchableNativeFeedback.Ripple('#000', false)}
       onPress={() => {
         KillAllOsc()
         dispatch({
           type: 'KILL_OSC',
         })
       }}>
-      <Text style={styles.text}>Clear All</Text>
-    </TouchableHighlight>
+      <View style={styles.button}>
+        <Text style={styles.text}>Clear All</Text>
+      </View>
+    </TouchableNativeFeedback>
   )
 }
 

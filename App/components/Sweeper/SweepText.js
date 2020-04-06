@@ -3,7 +3,7 @@ import {
   StyleSheet,
   TextInput,
   Text,
-  TouchableHighlight,
+  TouchableNativeFeedback,
   View,
 } from 'react-native'
 import Slider from '@react-native-community/slider'
@@ -47,20 +47,26 @@ export const SweepInputText = (props) => {
         marginBottom: 20,
         paddingTop: 30,
         paddingBottom: 10,
-      }}>
-      <TouchableHighlight
-        style={{
-          alignItems: 'center',
-          alignSelf: 'flex-end',
-          width: 36,
-          right: 10,
-          position: 'absolute',
-        }}
+      }}
+    >
+      <TouchableNativeFeedback
+        background={TouchableNativeFeedback.Ripple('#000', false)}
         onPress={() => {
           Remove(props.oscNumber)
-        }}>
-        <Text style={{ fontSize: 36 }}>X</Text>
-      </TouchableHighlight>
+        }}
+      >
+        <View
+          style={{
+            alignItems: 'center',
+            alignSelf: 'flex-end',
+            width: 36,
+            right: 10,
+            position: 'absolute',
+          }}
+        >
+          <Text style={{ fontSize: 36 }}>X</Text>
+        </View>
+      </TouchableNativeFeedback>
       <Text>Frequency</Text>
       <View style={styles.inputsWrapper}>
         <View style={styles.textInputContainer}>
@@ -86,22 +92,28 @@ export const SweepInputText = (props) => {
       </View>
 
       <View style={styles.textInputContainer}>
-        <TouchableHighlight
-          style={active ? styles.buttonOn : styles.button}
+        <TouchableNativeFeedback
+          background={TouchableNativeFeedback.Ripple('#000', false)}
           disabled={active}
           onPress={() => {
             Sweep()
-          }}>
-          <Text>{active ? 'Playing...' : 'Sweep'}</Text>
-        </TouchableHighlight>
+          }}
+        >
+          <View style={active ? styles.buttonOn : styles.button}>
+            <Text>{active ? 'Playing...' : 'Sweep'}</Text>
+          </View>
+        </TouchableNativeFeedback>
 
-        <TouchableHighlight
-          style={styles.button}
+        <TouchableNativeFeedback
+          background={TouchableNativeFeedback.Ripple('#000', false)}
           onPress={() => {
             Stop()
-          }}>
-          <Text>Stop</Text>
-        </TouchableHighlight>
+          }}
+        >
+          <View style={styles.button}>
+            <Text>Stop</Text>
+          </View>
+        </TouchableNativeFeedback>
       </View>
 
       <Text style={{ color: 'white' }}>Db: {db.toFixed(2)}</Text>
@@ -131,6 +143,8 @@ export const SweepInputText = (props) => {
   function Stop() {
     KillSingleOsc(props.oscNumber)
     setActive(false)
+    clearTimeout(timeout.current)
+    // return this.webview... clearTimeouts..
   }
 
   function Volume() {
@@ -143,6 +157,7 @@ export const SweepInputText = (props) => {
       setActive(false)
     }, time * 1000 + 200)
 
+    // need to shut down the timers in tone...
     return this.webview.injectJavaScript(`
       osc[${props.oscNumber}] = new Tone.Oscillator({
         'type': 'sine',
@@ -197,7 +212,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     padding: 10,
-    backgroundColor: 'dimgray',
+    backgroundColor: 'darkgreen',
     height: 30,
     width: width * 0.4,
     margin: 5,
