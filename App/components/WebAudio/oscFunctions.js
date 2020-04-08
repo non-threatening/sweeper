@@ -20,6 +20,6 @@ export function KillSingleOsc(osc) {
 
 export function SetSingleVolume(osc, db) {
   return this.webview.injectJavaScript(`
-    osc[${osc}].volume.rampTo(${db}, 0.1);
+    osc[${osc}].volume.rampTo(${db}, 0.05);
   `)
 }
