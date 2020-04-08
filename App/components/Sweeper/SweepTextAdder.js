@@ -13,17 +13,16 @@ export const SweepTextAdder = () => {
 
   useEffect(() => {
     switch (true) {
-      case !osc.length: // Clear all knobs
+      case !osc.length:
         setKnobs([])
         break
-      case osc.length > knobs.length: // Add knob
+      case osc.length > knobs.length:
         let addKnob = {
           key: Number.isFinite(Math.max(...osc)) ? Math.max(...osc) : 0,
         }
         setKnobs([...knobs, addKnob])
         break
       default:
-        // Remove knob
         setKnobs(knobs.filter((value) => osc.includes(value.key)))
     }
   }, [osc])

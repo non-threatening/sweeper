@@ -23,7 +23,8 @@ export const AddSweeper = () => {
   return (
     <TouchableNativeFeedback
       background={TouchableNativeFeedback.Ripple('#000', false)}
-      onPress={_add}>
+      onPress={_add}
+    >
       <View style={styles.button}>
         <Text>Add Sweeper</Text>
       </View>
