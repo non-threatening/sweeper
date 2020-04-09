@@ -2,31 +2,31 @@ import React from 'react'
 import {
   Dimensions,
   StyleSheet,
-  TouchableNativeFeedback,
   Text,
+  TouchableNativeFeedback,
   View,
 } from 'react-native'
-import { useOscValue } from '../../oscContext'
 
 const width = Dimensions.get('window').width
 
-export const AddSweeper = () => {
+import { KillAllOsc } from '../masterFunctions'
+import { useOscValue } from '../../WebAudio/oscContext'
+
+export function KillAllOscButton() {
   const [{ osc }, dispatch] = useOscValue()
   osc
-  const _add = () => {
-    dispatch({
-      type: 'NEW_OSC',
-      kind: 'sweeper',
-    })
-  }
-
   return (
     <TouchableNativeFeedback
       background={TouchableNativeFeedback.Ripple('#000', false)}
-      onPress={_add}
+      onPress={() => {
+        KillAllOsc()
+        dispatch({
+          type: 'KILL_OSC',
+        })
+      }}
     >
       <View style={styles.button}>
-        <Text>Add Sweeper</Text>
+        <Text style={styles.text}>Clear All</Text>
       </View>
     </TouchableNativeFeedback>
   )
@@ -40,6 +40,6 @@ const styles = StyleSheet.create({
     backgroundColor: 'gray',
     height: 30,
     width: width * 0.4,
-    margin: 15,
+    margin: 5,
   },
 })

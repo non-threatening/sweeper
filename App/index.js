@@ -5,8 +5,8 @@ import WebAudio, {
   initialState,
   reducer,
   OscProvider,
-  MasterController,
 } from './components/WebAudio'
+import { MasterController } from './components/MasterController'
 
 import { Sweeper } from './components/Sweeper'
 
