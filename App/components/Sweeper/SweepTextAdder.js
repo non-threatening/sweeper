@@ -12,18 +12,22 @@ export const SweepTextAdder = () => {
   })
 
   useEffect(() => {
+    const swOsc = osc.filter((thing) => thing.includes('sweeper'))
     switch (true) {
-      case !osc.length:
+      case !swOsc.length:
         setKnobs([])
         break
-      case osc.length > knobs.length:
+      case swOsc.length > knobs.length:
         let addKnob = {
-          key: Number.isFinite(Math.max(...osc)) ? Math.max(...osc) : 0,
+          key: Number.isFinite(Math.max(...swOsc.map((thing) => thing[0])))
+            ? Math.max(...swOsc.map((thing) => thing[0]))
+            : 0,
         }
         setKnobs([...knobs, addKnob])
         break
       default:
-        setKnobs(knobs.filter((value) => osc.includes(value.key)))
+        const del = [...swOsc.map((thing) => thing[0])]
+        setKnobs(knobs.filter((thing) => del.includes(thing.key)))
     }
   }, [osc])
 

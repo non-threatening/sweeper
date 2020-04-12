@@ -6,16 +6,20 @@ export const initialState = {
 
 export const reducer = (state, action) => {
   const newOsc = (kind) => {
-    let incOsc = Number.isFinite(Math.max(...state.osc))
-      ? Math.max(...state.osc) + 1
+    let incOsc = Number.isFinite(
+      Math.max(...state.osc.map((thing) => thing[0])),
+    )
+      ? Math.max(...state.osc.map((thing) => thing[0])) + 1
       : 0
-    const nextOsc = [...state.osc, incOsc]
-    return state.osc.length ? nextOsc : [0]
+    state.osc.push([incOsc, kind])
+    const arrayOsc = [...state.osc]
+    return state.osc.length ? arrayOsc : [0, kind]
   }
 
   const removeOsc = (removed) => {
     const newArr = [...state.osc]
-    removed = newArr.indexOf(removed)
+    const del = [...state.osc.map((thing) => thing[0])]
+    removed = del.indexOf(removed)
     newArr.splice(removed, 1)
     return newArr.length ? newArr : []
   }
