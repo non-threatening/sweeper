@@ -13,22 +13,40 @@ const width = Dimensions.get('window').width
 export const AddDummy = () => {
   const [{ osc }, dispatch] = useOscValue()
   osc
-  const _add = () => {
+  const add = () => {
     dispatch({
       type: 'NEW_OSC',
       kind: 'dummy',
     })
   }
 
+  const removeKind = () => {
+    dispatch({
+      type: 'REMOVE_KIND',
+      kind: 'dummy',
+    })
+  }
+
   return (
-    <TouchableNativeFeedback
-      background={TouchableNativeFeedback.Ripple('#000', false)}
-      onPress={_add}
-    >
-      <View style={styles.button}>
-        <Text>Add Dummy</Text>
-      </View>
-    </TouchableNativeFeedback>
+    <>
+      <TouchableNativeFeedback
+        background={TouchableNativeFeedback.Ripple('#000', false)}
+        onPress={add}
+      >
+        <View style={styles.button}>
+          <Text>Add Dummy</Text>
+        </View>
+      </TouchableNativeFeedback>
+
+      <TouchableNativeFeedback
+        background={TouchableNativeFeedback.Ripple('#000', false)}
+        onPress={removeKind}
+      >
+        <View style={styles.button}>
+          <Text>Clear Dummies</Text>
+        </View>
+      </TouchableNativeFeedback>
+    </>
   )
 }
 

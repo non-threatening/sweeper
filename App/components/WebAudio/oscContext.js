@@ -24,6 +24,11 @@ export const reducer = (state, action) => {
     return newArr.length ? newArr : []
   }
 
+  const removeKind = (kind) => {
+    const swOsc = state.osc.filter((thing) => !thing.includes(kind))
+    return swOsc
+  }
+
   switch (action.type) {
     case 'NEW_OSC':
       return {
@@ -36,6 +41,10 @@ export const reducer = (state, action) => {
     case 'REMOVE_OSC':
       return {
         osc: removeOsc(action.payload),
+      }
+    case 'REMOVE_KIND':
+      return {
+        osc: removeKind(action.kind),
       }
     default:
       return state
