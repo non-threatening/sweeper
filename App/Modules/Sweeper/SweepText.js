@@ -9,8 +9,8 @@ import {
 import Slider from '@react-native-community/slider'
 import { Dimensions } from 'react-native'
 
-import { KillSingleOsc, SetSingleVolume } from '../WebAudio/oscFunctions'
-import { useOscValue } from '../WebAudio'
+import { KillSingleOsc, SetSingleVolume } from '../../WebAudio/oscFunctions'
+import { useOscValue } from '../../WebAudio'
 
 const width = Dimensions.get('window').width
 
@@ -64,6 +64,7 @@ export const SweepInputText = (props) => {
             position: 'absolute',
           }}
         >
+          {/* <Text>{props.oscNumber}</Text> */}
           <Text style={{ fontSize: 36 }}>X</Text>
         </View>
       </TouchableNativeFeedback>

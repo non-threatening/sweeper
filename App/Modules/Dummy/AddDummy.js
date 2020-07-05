@@ -6,7 +6,7 @@ import {
   Text,
   View,
 } from 'react-native'
-import { useOscValue } from '../WebAudio/oscContext'
+import { useOscValue } from '../../WebAudio/oscContext'
 
 const width = Dimensions.get('window').width
 

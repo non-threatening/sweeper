@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { DummInputText } from './DummText'
-import { useOscValue } from '../WebAudio'
+import { useOscValue } from '../../WebAudio'
 
 export const DummTextAdder = () => {
   const [{ osc }, dispatch] = useOscValue()
@@ -29,17 +29,15 @@ export const DummTextAdder = () => {
         setKnobs(knobs.filter((thing) => del.includes(thing.key)))
     }
     console.log(osc)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [osc])
+  }, [osc]) // eslint-disable-line react-hooks/exhaustive-deps
 
-  // Add knob on load...
   useEffect(() => {
+    // Add knob on load...
     dispatch({
       type: 'NEW_OSC',
       kind: 'dummy',
     })
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   return <>{newKnobs}</>
 }

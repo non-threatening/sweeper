@@ -30,13 +30,13 @@ export const reducer = (state, action) => {
   }
 
   switch (action.type) {
-    case 'NEW_OSC':
-      return {
-        osc: newOsc(action.kind),
-      }
     case 'KILL_OSC':
       return {
         osc: [],
+      }
+    case 'NEW_OSC':
+      return {
+        osc: newOsc(action.kind),
       }
     case 'REMOVE_OSC':
       return {

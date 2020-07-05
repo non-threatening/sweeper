@@ -2,8 +2,8 @@ import React from 'react'
 import { Text, TouchableNativeFeedback, View } from 'react-native'
 import { Dimensions } from 'react-native'
 
-import { KillSingleOsc } from '../WebAudio/oscFunctions'
-import { useOscValue } from '../WebAudio'
+import { KillSingleOsc } from '../../WebAudio/oscFunctions'
+import { useOscValue } from '../../WebAudio'
 
 const width = Dimensions.get('window').width
 

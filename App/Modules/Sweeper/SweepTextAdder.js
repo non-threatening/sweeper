@@ -1,7 +1,6 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react'
 import { SweepInputText } from './SweepText'
-import { useOscValue } from '../WebAudio'
+import { useOscValue } from '../../WebAudio'
 
 export const SweepTextAdder = () => {
   const [{ osc }, dispatch] = useOscValue()
@@ -29,7 +28,7 @@ export const SweepTextAdder = () => {
         const del = [...swOsc.map((thing) => thing[0])]
         setKnobs(knobs.filter((thing) => del.includes(thing.key)))
     }
-  }, [osc])
+  }, [osc]) // eslint-disable-line react-hooks/exhaustive-deps
 
   // Add knob on load...
   useEffect(() => {
@@ -37,7 +36,7 @@ export const SweepTextAdder = () => {
       type: 'NEW_OSC',
       kind: 'sweeper',
     })
-  }, [])
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   return <>{newKnobs}</>
 }
