@@ -25,8 +25,8 @@ export const DummyController = () => {
         setKnobs([...knobs, addKnob])
         break
       default:
-        const del = [...swOsc.map((thing) => thing[0])]
-        setKnobs(knobs.filter((thing) => del.includes(thing.key)))
+        const deleteKnob = [...swOsc.map((thing) => thing[0])]
+        setKnobs(knobs.filter((thing) => deleteKnob.includes(thing.key)))
     }
     console.log(osc)
   }, [osc]) // eslint-disable-line react-hooks/exhaustive-deps

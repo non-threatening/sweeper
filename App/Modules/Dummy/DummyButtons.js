@@ -19,16 +19,7 @@ export const AddDummy = () => {
       kind: 'dummy',
     })
   }
-  return (
-    <TouchableNativeFeedback
-      background={TouchableNativeFeedback.Ripple('#000', false)}
-      onPress={add}
-    >
-      <View style={styles.button}>
-        <Text>Add Dummy</Text>
-      </View>
-    </TouchableNativeFeedback>
-  )
+  return <Button onPress={() => add()} label={'Add Dummy'} />
 }
 
 export const ClearDummies = () => {
@@ -40,13 +31,17 @@ export const ClearDummies = () => {
       kind: 'dummy',
     })
   }
+  return <Button onPress={() => removeKind()} label={'Clear Dummies'} />
+}
+
+function Button({ onPress, label }) {
   return (
     <TouchableNativeFeedback
       background={TouchableNativeFeedback.Ripple('#000', false)}
-      onPress={removeKind}
+      onPress={onPress}
     >
       <View style={styles.button}>
-        <Text>Clear Dummies</Text>
+        <Text>{label}</Text>
       </View>
     </TouchableNativeFeedback>
   )
