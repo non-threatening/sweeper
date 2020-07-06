@@ -1,2 +1,2 @@
 export { DummyController } from './DummyController'
-export { AddDummy, ClearDummies } from './AddDummyButton'
+export { AddDummy, ClearDummies } from './DummyButtons'
