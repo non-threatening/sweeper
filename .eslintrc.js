@@ -8,5 +8,5 @@ module.exports = {
     'react-native/no-unused-styles': 1,
     'react-native/no-inline-styles': 0,
     // 'react-native/no-raw-text': 2
-  }
+  },
 }

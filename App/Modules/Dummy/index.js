@@ -1,1 +1,2 @@
-export { DummTextAdder as Dummy } from './DummTextAdder'
+export { DummyController } from './DummyController'
+export { AddDummy, ClearDummies } from './AddDummyButton'

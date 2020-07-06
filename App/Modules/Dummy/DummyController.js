@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react'
-import { DummInputText } from './DummText'
+import { Dummy } from './Dummy'
 import { useOscValue } from '../../WebAudio'
 
-export const DummTextAdder = () => {
+export const DummyController = () => {
   const [{ osc }, dispatch] = useOscValue()
   const [knobs, setKnobs] = useState([])
 
   let newKnobs = knobs.reverse().map((item, index) => {
-    return <DummInputText key={item.key} oscNumber={item.key} />
+    return <Dummy key={item.key} oscNumber={item.key} />
   })
 
   useEffect(() => {

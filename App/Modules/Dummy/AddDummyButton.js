@@ -19,34 +19,36 @@ export const AddDummy = () => {
       kind: 'dummy',
     })
   }
+  return (
+    <TouchableNativeFeedback
+      background={TouchableNativeFeedback.Ripple('#000', false)}
+      onPress={add}
+    >
+      <View style={styles.button}>
+        <Text>Add Dummy</Text>
+      </View>
+    </TouchableNativeFeedback>
+  )
+}
 
+export const ClearDummies = () => {
+  const [{ osc }, dispatch] = useOscValue()
+  osc
   const removeKind = () => {
     dispatch({
       type: 'REMOVE_KIND',
       kind: 'dummy',
     })
   }
-
   return (
-    <>
-      <TouchableNativeFeedback
-        background={TouchableNativeFeedback.Ripple('#000', false)}
-        onPress={add}
-      >
-        <View style={styles.button}>
-          <Text>Add Dummy</Text>
-        </View>
-      </TouchableNativeFeedback>
-
-      <TouchableNativeFeedback
-        background={TouchableNativeFeedback.Ripple('#000', false)}
-        onPress={removeKind}
-      >
-        <View style={styles.button}>
-          <Text>Clear Dummies</Text>
-        </View>
-      </TouchableNativeFeedback>
-    </>
+    <TouchableNativeFeedback
+      background={TouchableNativeFeedback.Ripple('#000', false)}
+      onPress={removeKind}
+    >
+      <View style={styles.button}>
+        <Text>Clear Dummies</Text>
+      </View>
+    </TouchableNativeFeedback>
   )
 }
 

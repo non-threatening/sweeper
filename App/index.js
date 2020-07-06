@@ -5,8 +5,7 @@ import WebAudio, { initialState, reducer, OscProvider } from './WebAudio'
 import { MasterController } from './MasterController'
 
 import { Sweeper } from './Modules/Sweeper'
-import { Dummy } from './Modules/Dummy'
-import { AddDummy } from './Modules/Dummy/AddDummy'
+import { AddDummy, DummyController, ClearDummies } from './Modules/Dummy'
 
 const App = () => {
   return (
@@ -16,9 +15,10 @@ const App = () => {
       <OscProvider initialState={initialState} reducer={reducer}>
         <ScrollView contentInsetAdjustmentBehavior={'automatic'}>
           <Sweeper />
-          <Dummy />
+          <DummyController />
         </ScrollView>
         <AddDummy />
+        <ClearDummies />
         <MasterController />
       </OscProvider>
     </>

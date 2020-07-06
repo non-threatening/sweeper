@@ -7,7 +7,7 @@ import { useOscValue } from '../../WebAudio'
 
 const width = Dimensions.get('window').width
 
-export const DummInputText = (props) => {
+export const Dummy = (props) => {
   const [{ osc }, dispatch] = useOscValue()
   osc
 
